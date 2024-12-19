@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+
+body{
+    background-image: url(img/image.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block-connexion{
+    background-color: rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    height: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    font-family: "Jost", sans-serif;
+}
+
+.block-connexion h1{
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: 'Jost', sans-serif;
+}
+
+
+.block-connexion input{
+    width: 80%;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 20px;
+    border: 0;
+    font-size: 1.2rem;
+    outline: none;
+}
