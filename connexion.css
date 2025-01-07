@@ -1,0 +1,123 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root{
+    --purple : #B162CB;
+    --light-purple : #A44DBF;
+    --orange : #FDB975;
+    --light-orange: #FEDFC0;
+    --blue : #01B0DC;
+    --light-blue : #A7E2F4;
+    --fond : #14003F;
+
+}
+
+
+body{
+    background-image: url(img/fond.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-logo{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-connexion{
+    width: 100px;
+    height: 100px;
+    background-image: url(img/logo.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.block-connexion{
+    color: white;
+    border: solid 1px rgba(255, 255, 255, 0.7);
+    background-color: rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    height: 450px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    font-family: "Jost", sans-serif;
+}
+
+.block-connexion h2{
+    color: white;
+    font-size: 3rem;
+    margin: 0;
+    font-family: 'Jost', sans-serif;
+}
+
+.block-connexion>label, .block-connexion>a{
+    cursor: text;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 10%;
+    align-self: flex-start;
+}
+
+.block-connexion>a{
+    cursor: pointer;
+    color: white;
+}
+
+.block-connexion>a:hover{
+    text-decoration: underline;
+}
+
+.block-connexion input[type="text"], .block-connexion input[type="password"]{
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 20px;
+    border: 0;
+    font-size: 1rem;
+}
+
+.souvenirdemoi{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 80%;
+}
+
+.block-connexion input[type="submit"]{
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.block-connexion input[type="submit"]:hover{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
