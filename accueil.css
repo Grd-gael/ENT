@@ -8,6 +8,72 @@
 body{
     background-color: var(--fond);
     margin: 0;
+    height: 150vh;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Jost', sans-serif;
 }
 
 
+.container-section{
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.container-section a{
+    text-decoration: none;
+    color: black;
+}   
+
+.section-box{
+    height: 25dvh;
+    width: 20vw;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+    font-family: "Barlow", sans-serif;
+}
+
+h2{
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.container-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    width: 70%;
+    margin-top: 10px;
+
+}
+
+.button{
+    background-color: var(--blue);
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    font-family: "Barlow", sans-serif;
+    width: 15vw;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+}

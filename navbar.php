@@ -9,17 +9,16 @@
     <ul class="nav-links">
         <li><a href="#">Services</a></li>
         <li><a href="#">Scolarité</a></li>
-        <li><a href="#">Messagerie</a></li>
-        <li><a href="#">Espace de stockage</a></li>
         <li><a href="#">Informations</a></li>
+        <li><a href="#">Messagerie</a></li>
+        <li><a href="#">Espace de stickage</a></li>
         <li><a href="#">Emploi</a></li>
-        <li>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-        </li>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+         </div>
+       
         <li class="profile">
             <a href="#" class="profile-link">
                 <img src="img/profile.jpg" alt="Profil" class="profile-pic">
@@ -32,9 +31,9 @@
         <ul>
             <li><a href="#">Services</a></li>
             <li><a href="#">Scolarité</a></li>
+            <li><a href="#">Informations</a></li>
             <li><a href="#">Messagerie</a></li>
             <li><a href="#">Espace de stockage</a></li>
-            <li><a href="#">Informations</a></li>
             <li><a href="#">Emploi</a></li>
         </ul>
     </div>

@@ -18,6 +18,57 @@ require 'navbar.php';
 ?>
 
 
+<h1>Accueil</h1>
+
+<div class="container-section">
+    <a href="#">
+        <div class="section-box">
+            <img src="" alt="">
+            <h2>Services</h2>
+        </div>
+    </a>
+    <a href="#">
+        <div class="section-box">
+            <img src="" alt="">
+            <h2>Scolarité</h2>
+        </div>
+    </a>
+    <a href="#">
+        <div class="section-box">
+            <img src="" alt="">
+            <h2>Informations</h2>
+        </div>
+    </a>
+    <a href="#">
+        <div class="section-box">
+            <img src="" alt="">
+            <h2>Messagerie</h2>
+        </div>
+    </a>
+    <a href="#">
+        <div class="section-box">
+            <img src="" alt="">
+            <h2>Espace de stockage</h2>
+        </div>
+    </a>
+    <a href="#">
+        <div class="section-box">
+            <img src="" alt="">
+            <h2>Emploi</h2>
+        </div>
+    </a>
+</div>
+
+
+<div class="container-button">
+    <a href="" class="button">Quiz d'orientation</a>
+    
+    <a href="" class="button">Forum communautaire</a>
+    
+    <a href="" class="button">Droits étudiants</a>
+</div>
+
+
 
 
 <?php 
