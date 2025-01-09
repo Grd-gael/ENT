@@ -1,0 +1,13 @@
+
+.section-box{
+    height: 30dvh;
+    width: 300px;
+    justify-content: center;
+}
+
+.section-box p{
+    font-size: 0.9rem;
+    margin: 0;
+    text-align: center;
+    max-width: 200px;
+}
