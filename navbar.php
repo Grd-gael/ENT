@@ -1,18 +1,18 @@
 <nav class="navbar">
-    <a class="logo" href="#">
+    <a class="logo" href="accueil.php">
         <img src="img/logo-eiffel.png" alt="Logo" width="50">
         <div class="text-logo">
             <span class="barlow">Espace Numérique de Travail</span> <br>
             <span class="jost">Gustave Eiffel</span>
         </div>
-</a>
+    </a>
     <ul class="nav-links">
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Scolarité</a></li>
-        <li><a href="#">Informations</a></li>
-        <li><a href="#">Messagerie</a></li>
-        <li><a href="#">Espace de stickage</a></li>
-        <li><a href="#">Emploi</a></li>
+        <li><a href="services.php">Services</a></li>
+        <li><a href="scolarite.php">Scolarité</a></li>
+        <li><a href="informations.php">Informations</a></li>
+        <li><a href="messagerie.php">Messagerie</a></li>
+        <li><a href="stockage.php">Espace de stockage</a></li>
+        <li><a href="emploi.php">Emploi</a></li>
         <div class="burger">
             <div class="line1"></div>
             <div class="line2"></div>
@@ -20,8 +20,8 @@
          </div>
        
         <li class="profile">
-            <a href="#" class="profile-link">
-                <img src="img/profile.jpg" alt="Profil" class="profile-pic">
+            <a href="profil.php" class="profile-link">
+                <i class="fa-solid fa-circle-user fa-2xl" style="color: #ffffff;"></i>
             </a>
         </li>
     </ul>

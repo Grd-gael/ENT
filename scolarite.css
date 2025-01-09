@@ -1,0 +1,66 @@
+.section-box-scolarite {
+    height: 70dvh;
+    width: 350px;
+    min-width: 250px;
+    background-color: var(--light-blue);
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 15px;
+    font-family: "Barlow", sans-serif;
+}
+
+.elearning{
+    position: absolute;
+    top: 15dvh;
+    right: 10vw;
+}
+
+.note, .absence{
+    width: 80%;
+    height: 30%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+}
+
+.absence i{
+    align-self: flex-end;
+    margin-right: 15px;
+    margin-top: -5px;
+}
+
+hr{
+    width: 60%;
+}
+
+.edt{
+    width: 90%;
+    height: 70%;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+}
+
+.edt-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 20%;
+    border-radius: 10px;
+    background-color: var(--light-orange);
+}
