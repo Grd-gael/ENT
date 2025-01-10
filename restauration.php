@@ -44,7 +44,7 @@ require 'navbar.php';
 
     </div>
     <div class="flex-vertical">
-        <a href="#">
+        <a href="commande.php">
             <div class="section-box">
                 <i class="fa-solid fa-basket-shopping fa-5x"></i>
                 <h2>Commander</h2>
