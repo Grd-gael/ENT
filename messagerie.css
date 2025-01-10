@@ -8,3 +8,124 @@ input.annuaire{
 .container-messagerie{
     margin-bottom: 40vh;
 }
+
+.reduced-aside{
+    height: 90vh;
+}
+
+.names{
+    align-self: flex-start;
+    margin-left: 2vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: #f1f1f1 1px solid;
+}
+
+.names h1{
+    font-size: 2rem;
+    font-family: "jost", sans-serif;
+    color: white;
+    margin: 0;
+}
+
+h2{
+    align-self: flex-start;
+    font-size: 1rem;
+    font-family: "jost", sans-serif;
+    color: white;
+}
+
+aside ul {
+    list-style-type: none;
+    font-family: "jost", sans-serif;
+}
+
+aside li{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 60%;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.photo-annuaire{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+    background-color: #f1f1f1;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    width: 90%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+
+.message-received{
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    float: left;
+}
+
+.message-sent{
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    float: right;
+}
+
+.message-date{
+    font-size: 0.7rem;
+    margin-top: 5px;
+    color: black;
+}
+
+.message-sent p{
+    text-align: right;
+}
+
+.message-input{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.message-input input{
+    width: 80%;
+    padding: 10px;
+    border: 1px solid black;
+    font-family: "jost", sans-serif;
+}
+
+.message-input button{
+    width: 20%;
+    padding: 10px;
+    border: 1px solid black;
+    font-family: "jost", sans-serif;
+    background-color: var(--blue);
+    color: black;
+}
+
+.message-input button:hover{
+    background-color: var(--orange);
+}
