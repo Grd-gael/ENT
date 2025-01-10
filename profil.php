@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['etudiant'])) {
+    header('Location: connexion.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -27,7 +36,7 @@ require 'navbar.php';
             <img src="img/profile.jpg" alt="">
         </div>
         <div class="nom-profil">
-            <h1>Prénom Nom</h1>
+            <h1><?=$_SESSION['user']['prenom'].' '.$_SESSION['user']['nom']?></h1>
             <h2>MMI 2 dev</h2>
         </div>
     </div>

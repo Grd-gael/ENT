@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+if (isset($_SESSUION['user'])) {
+    switch ($_SESSION['user']['role']) {
+        case 'admin':
+            header('Location: backoffice.php');
+            break;
+        case 'prof':
+            header('Location: professeur.php');
+            break;
+        case 'etudiant':
+            header('Location: accueil.php');
+            break;
+        default:
+            header('Location: connexion.php?error=login');
+            break;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,9 +41,25 @@
                 <span class="jost">Gustave Eiffel</span>
             </div>
         </div>
-    <form class="block-connexion" action="connexion.php" method="post">
+    <form class="block-connexion" action="traiteconnexion.php" method="post">
         <h2>Connexion</h2>
-        <form action="connexion.php" method="post">
+        <div class="error">
+            <?php
+            if (isset($_GET['error'])) {
+                switch ($_GET['error']) {
+                    case 'login':
+                        echo 'Mauvais login';
+                        break;
+                    case 'mdp':
+                        echo 'Mauvais mot de passe';
+                        break;
+                    default:
+                        echo 'Erreur inconnue';
+                        break;
+                }
+            }
+            ?>
+        </div>
             <label for="login">Identifiant</label>
             <input type="text" name="login" placeholder="ex : prenom.nom">
             <label for="password">Mot de passe</label>

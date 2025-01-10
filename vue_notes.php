@@ -3,7 +3,7 @@ include 'connect.php';
 
 $sql = "SELECT devoir.note, devoir.date, devoir.remarque, enonce.intitule, enonce.coeff, module.module FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk WHERE etud_fk = :etudiant_id ORDER BY date DESC LIMIT 2;";
 $stmt = $db->prepare($sql);
-$stmt->bindParam(':etudiant_id', $_GET['id']);
+$stmt->bindParam(':etudiant_id', $_SESSION['etudiant']['etud_id']);
 $stmt->execute();
 $last_added_notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -45,7 +45,7 @@ foreach ($modules as $module) {
 
     $sql = "SELECT devoir.note, devoir.date, devoir.remarque, enonce.intitule, enonce.coeff, module.module FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk WHERE etud_fk = :etudiant_id AND enonce.modu_fk = :module_id ORDER BY devoir.date DESC;";
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':etudiant_id', $_GET['id']);
+    $stmt->bindParam(':etudiant_id', $_SESSION['etudiant']['etud_id']);
     $stmt->bindParam(':module_id', $module['modu_id']);
     $stmt->execute();
     $devoirs = $stmt->fetchAll(PDO::FETCH_ASSOC);

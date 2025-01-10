@@ -7,7 +7,7 @@ include 'connect.php';
 <?php
 $sql = 'SELECT absence.abse_id, absence.justifie, cours.debut, cours.fin FROM absence JOIN cours ON absence.cour_fk = cours.cour_id WHERE absence.etud_fk = :etudiant AND present = false;';
 $stmt = $db->prepare($sql);
-$stmt->bindValue(':etudiant', $_GET['id'], PDO::PARAM_INT);
+$stmt->bindValue(':etudiant', $_SESSION['etudiant']['etud_id'], PDO::PARAM_INT);
 $stmt->execute();
 $absences = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -63,7 +63,6 @@ echo '</div>';
             <h2>Ajouter un justificatif</h2>
             <form action="justifie.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="absence" id="absence" value="">
-                <input type="hidden" name="etudiant" id="etudiant" value="<?= $_GET['id'] ?>">
 
                 <label for="justificatif">Choisir un fichier</label>
                 <input type="file" name="justificatif" id="justificatif" accept=".pdf,.jpg,.png">

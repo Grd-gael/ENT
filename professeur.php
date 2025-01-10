@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['prof'])) {
+    header('Location: connexion.php');
+    exit;
+}
 include 'connect.php';
 ?>
 
@@ -17,7 +23,7 @@ include 'connect.php';
             <h2>Absences</h2>
         </summary>
         <h3>Déclarer une absence</h3>
-        <form action="addabsence.php?id=<?=$_GET['id']?>" method="post">
+        <form action="addabsence.php?id=<?=$_SESSION['prof']['prof_id']?>" method="post">
             <label for="etudiant">Élève</label>
             <select name="etudiant" id="etudiant_absence">
                 <option value="0" selected>-- Sélectionner un élève --</option>
@@ -25,7 +31,7 @@ include 'connect.php';
                 $sql = 'SELECT user.nom, user.prenom, etudiant.etud_id, etudiant.clas_fk FROM etudiant JOIN relation_prof_classe ON etudiant.clas_fk = relation_prof_classe.clas_fk JOIN user ON user.user_id = etudiant.user_fk WHERE relation_prof_classe.prof_fk = :prof_id;';
         
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                 $stmt->execute();
                 $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($etudiants as $etudiant) {
@@ -40,7 +46,7 @@ include 'connect.php';
                 $sql = 'SELECT cours.cour_id, cours.debut, cours.fin, module.module, relation_cours_classe.clas_fk FROM cours JOIN module ON module.modu_id = cours.modu_fk JOIN relation_cours_classe ON relation_cours_classe.cour_fk = cours.cour_id WHERE cours.prof_fk = :prof_id;';
         
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                 $stmt->execute();
                 $cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($cours as $cours) {
@@ -65,7 +71,7 @@ include 'connect.php';
             $sql = 'SELECT user.nom, user.prenom, cours.debut, cours.fin, module.module, absence.justifie FROM absence JOIN etudiant ON etudiant.etud_id = absence.etud_fk JOIN user ON user.user_id = etudiant.user_fk JOIN cours ON cours.cour_id = absence.cour_fk JOIN module ON module.modu_id = cours.modu_fk WHERE cours.prof_fk = :prof_id;';
         
             $stmt = $db->prepare($sql);
-            $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
             $stmt->execute();
             $absences = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($absences as $absence) {
@@ -89,7 +95,7 @@ include 'connect.php';
         </summary>
 
         <h3>Ajouter un devoir</h3>
-        <form action="addenonce.php?id=<?=$_GET['id']?>" method="POST">
+        <form action="addenonce.php?id=<?=$_SESSION['prof']['prof_id']?>" method="POST">
             <label for="module">Module</label>
             <select name="module" id="module">
                 <option value="0" selected>-- Sélectionner un module --</option>
@@ -97,7 +103,7 @@ include 'connect.php';
                 $sql = 'SELECT module.modu_id, module.module FROM module JOIN relation_prof_module ON module.modu_id = relation_prof_module.modu_fk WHERE relation_prof_module.prof_fk = :prof_id;';
         
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                 $stmt->execute();
                 $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($modules as $module) {
@@ -112,7 +118,7 @@ include 'connect.php';
                 $sql = 'SELECT classe.clas_id, classe.tp, classe.annee FROM classe JOIN relation_prof_classe ON classe.clas_id = relation_prof_classe.clas_fk WHERE relation_prof_classe.prof_fk = :prof_id;';
         
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                 $stmt->execute();
                 $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($classes as $classe) {
@@ -149,7 +155,7 @@ include 'connect.php';
             $sql = 'SELECT module.module, classe.tp, classe.annee, enonce.date_rendu, enonce.intitule, enonce.coeff FROM enonce JOIN relation_prof_enonce ON enonce.enon_id = relation_prof_enonce.enon_fk JOIN relation_enonce_classe ON enonce.enon_id = relation_enonce_classe.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE relation_prof_enonce.prof_fk = :prof_id;';
         
             $stmt = $db->prepare($sql);
-            $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
             $stmt->execute();
             $enonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($enonces as $enonce) {
@@ -178,7 +184,7 @@ include 'connect.php';
             if (isset($_GET['devoir'])) {
                 $sql = 'SELECT enonce.intitule, module.module, classe.tp, classe.annee, devoir.devo_id, MAX(devoir.date) as date, devoir.note, devoir.remarque FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON enonce.enon_id = relation_enonce_classe.enon_fk JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE devoir.prof_fk = :prof_id AND devoir.enon_fk = :devoir_id GROUP BY enonce.enon_id;';
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                 $stmt->bindValue(':devoir_id', $_GET['devoir'], PDO::PARAM_INT);
                 $stmt->execute();
                 $devoir = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -207,13 +213,13 @@ include 'connect.php';
                     echo '</tr>';
                 }
                 echo '</table>';
-                echo '<a href="professeur.php?id='.$_GET['id'].'">Fermer</a>';
+                echo '<a href="professeur.php?id='.$_SESSION['prof']['prof_id'].'">Fermer</a>';
                 echo '</div>';
             }
             ?>
 
         <h3>Ajouter des notes</h3>
-            <form action="addnotes.php?id=<?=$_GET['id']?>" method="POST">
+            <form action="addnotes.php?id=<?=$_SESSION['prof']['prof_id']?>" method="POST">
                 <label for="enonce">Énoncé</label>
                 <select name="enonce" id="note_enonce">
                     <option value="0" selected>-- Sélectionner un énoncé --</option>
@@ -221,14 +227,14 @@ include 'connect.php';
                     $sql = 'SELECT enonce.enon_id, enonce.intitule, module.module, relation_enonce_classe.clas_fk, classe.tp, classe.annee FROM enonce JOIN relation_prof_enonce ON enonce.enon_id = relation_prof_enonce.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON relation_enonce_classe.enon_fk = enonce.enon_id JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE relation_prof_enonce.prof_fk = :prof_id;';
             
                     $stmt = $db->prepare($sql);
-                    $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                    $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                     $stmt->execute();
                     $enonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($enonces as $enonce) {
                         $check = 'SELECT * FROM devoir WHERE enon_fk = :enonce AND prof_fk = :prof;';
                         $stmt = $db->prepare($check);
                         $stmt->bindValue(':enonce', $enonce['enon_id'], PDO::PARAM_INT);
-                        $stmt->bindValue(':prof', $_GET['id'], PDO::PARAM_INT);
+                        $stmt->bindValue(':prof', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                         $stmt->execute();
                         $result = $stmt->fetch(PDO::FETCH_ASSOC);
                         if (!$result) {
@@ -247,7 +253,7 @@ include 'connect.php';
                     <?php
                     $sql = 'SELECT user.nom, user.prenom, etudiant.etud_id, etudiant.clas_fk FROM etudiant JOIN relation_prof_classe ON etudiant.clas_fk = relation_prof_classe.clas_fk JOIN user ON user.user_id = etudiant.user_fk WHERE relation_prof_classe.prof_fk = :prof_id;';
                     $stmt = $db->prepare($sql);
-                    $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                    $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                     $stmt->execute();
                     $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($etudiants as $etudiant) {
@@ -273,7 +279,7 @@ include 'connect.php';
                 <?php
                 $sql = 'SELECT enonce.intitule, module.module, classe.tp, classe.annee, devoir.enon_fk, MAX(devoir.date) as date FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON enonce.enon_id = relation_enonce_classe.enon_fk JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE devoir.prof_fk = :prof_id GROUP BY enonce.enon_id ORDER BY date DESC LIMIT 5;';
                 $stmt = $db->prepare($sql);
-                $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
                 $stmt->execute();
                 $devoirs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($devoirs as $devoir) {
@@ -283,7 +289,7 @@ include 'connect.php';
                     echo '<td>'.$devoir['module'].' - '.$devoir['intitule'].'</td>';
                     echo '<td>'.$devoir['tp'].' MMI'.$devoir['annee'].'</td>';
                     echo '<td>'.$date.' à '.$heure.'</td>';
-                    echo '<td><a href="professeur.php?id='.$_GET['id'].'&devoir='.$devoir['enon_fk'].'">Détails</a></td>';
+                    echo '<td><a href="professeur.php?id='.$_SESSION['prof']['prof_id'].'&devoir='.$devoir['enon_fk'].'">Détails</a></td>';
                     echo '</tr>';
                 }
                 ?>
@@ -296,7 +302,7 @@ include 'connect.php';
         $sql = 'SELECT module.module FROM module JOIN relation_prof_module ON module.modu_id = relation_prof_module.modu_fk WHERE relation_prof_module.prof_fk = :prof_id;';
         
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
         $stmt->execute();
         $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -312,7 +318,7 @@ include 'connect.php';
         $sql = 'SELECT classe.tp, classe.annee FROM classe JOIN relation_prof_classe ON classe.clas_id = relation_prof_classe.clas_fk WHERE relation_prof_classe.prof_fk = :prof_id;';
         
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':prof_id', $_SESSION['prof']['prof_id'], PDO::PARAM_INT);
         $stmt->execute();
         $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

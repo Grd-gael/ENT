@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 
 var_dump($_POST);
@@ -22,5 +23,5 @@ $filename = $absence_id.'-'.basename($_FILES['justificatif']['name']);
 $newFilepath = $target_dir . $filename;
 move_uploaded_file($filepath, $newFilepath);
 
-header('Location: absences.php?id='.$_POST['etudiant'].'&justifie');
+header('Location: absences.php?justifie');
 ?>

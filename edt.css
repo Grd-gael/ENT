@@ -1,0 +1,58 @@
+.cours {
+    background-color: var(--light-orange);
+    padding: 5px;
+    border: 1px solid var(--orange);
+}
+
+.cours p {
+    margin: 0;
+    font-size: smaller;
+}
+
+table {
+    border-collapse: collapse;
+    background-color: white;
+    margin: auto;
+}
+
+td {
+    padding: 0 10px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    text-align: center;
+    height: 10px;
+    max-width: 20px;
+}
+
+caption {
+    padding: 10px;
+    background-color: var(--blue);
+    color: black;
+}
+
+caption p {
+    font-weight: bold;
+}
+
+.heure {
+    font-size: smaller;
+}
+
+@media screen and (min-width: 600px) {
+    table {
+        width: 80%;
+    }
+
+    td {
+        padding: 0 20px;
+        max-width: 40px;
+    }
+
+    .cours p {
+        font-size: 1rem;
+    }
+
+    .heure {
+        font-size: 1rem;
+    }
+}

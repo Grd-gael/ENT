@@ -1,28 +1,10 @@
 <?php
 include 'connect.php';
 
-$etudiant = $_GET['id'];
+$etudiant = $_SESSION['etudiant']['etud_id'];
 ?>
 
-<style>
-    .cours {
-        background-color: #f0f0f0;
-        padding: 5px;
-        border: 1px solid #ccc;
-    }
-
-    #tooltip {
-        display: none;
-        position: absolute;
-        background-color: #f0f0f0;
-        padding: 5px;
-        border: 1px solid #ccc;
-    }
-</style>
-
-<div id="tooltip"></div>
-
-<table>
+<table class="jost">
     <?php
     if (!isset($_GET['week_offset'])) {
         $week_offset = 0;
@@ -32,9 +14,7 @@ $etudiant = $_GET['id'];
 
     $monday = date('d/m/Y', strtotime("monday this week $week_offset week"));
     $friday = date('d/m/Y', strtotime("friday this week $week_offset week"));
-    echo '<div class="flex"><a href="?id='.$etudiant.'&week_offset=' . ($week_offset - 1) . '">Semaine précédente</a>';
-    echo '<caption>Semaine du '.$monday.' au '.$friday.'</caption>';
-    echo '<a href="?id='.$etudiant.'&week_offset=' . ($week_offset + 1) . '">Semaine suivante</a></div>';
+    echo '<caption><div class="flex-horizontal"><a class="button" id="arrow-left" href="?id='.$etudiant.'&week_offset=' . ($week_offset - 1) . '">Semaine précédente</a> <p>Semaine du '.$monday.' au '.$friday.'</p> <a class="button" id="arrow-right" href="?id='.$etudiant.'&week_offset=' . ($week_offset + 1) . '">Semaine suivante</a></div></caption>';
     ?>
     
 
@@ -88,33 +68,3 @@ $etudiant = $_GET['id'];
         ?>
     </tbody>
 </table>
-
-<script>
-    function getCursor(event) {
-    let x = event.clientX;
-    let y = event.clientY;
-
-    const tooltip = document.getElementById('tooltip');
-    tooltip.style.top = y + 10 + 'px';
-    tooltip.style.left = x + 10 + 'px';
-    }
-
-    document.addEventListener('mousemove', getCursor);
-
-    document.querySelectorAll('.heure').forEach(function(heure) {
-        if (heure.innerHTML[4] == '5') {
-            heure.innerHTML = '';
-        }
-    });
-
-    document.querySelectorAll('.cours').forEach(function(cours) {
-        cours.addEventListener('mouseover', function() {
-            tooltip.innerHTML = cours.dataset.time;
-            tooltip.style.display = 'block';
-        });
-
-        cours.addEventListener('mouseout', function() {
-            tooltip.style.display = 'none';
-        });
-    });
-</script>
