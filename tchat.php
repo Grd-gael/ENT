@@ -55,20 +55,16 @@ require 'navbar.php';
                 <p class="message-text">À demain !</p>
                 <p class="message-date">12:33</p>
             </div>
-
-            <div class="message-sent">
+            <div class="message-received">
                 <p class="message-text">À demain !</p>
                 <p class="message-date">12:33</p>
             </div>
 
-            <div class="message-sent">
-                <p class="message-text">À demain !</p>
-                <p class="message-date">12:36</p>
-            </div>
+
         </div>
     </div>
     <div class="message-input">
-            <input type="text" placeholder="Ecrire un message" class="message-input">
+            <input type="text" placeholder="Ecrire un message">
             <button class="send-message">Envoyer</button>
     </div>
 </div>

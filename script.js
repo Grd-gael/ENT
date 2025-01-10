@@ -52,42 +52,31 @@ document.addEventListener('click', (event) => {
 // Sélection des éléments nécessaires
 const messagesContainer = document.querySelector('.messages');
 const sendMessageButton = document.querySelector('.send-message');
-const messageInput = document.querySelector('.message-input');
+const messageInput = document.querySelector('.message-input input');
 
-// Fonction pour scroller vers le bas
-function scrollToBottom() {
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
+
 
 // Écouteur d'événement pour le bouton d'envoi
 sendMessageButton.addEventListener('click', () => {
-    const messageText = messageInput.value.trim();
+    const messageText = messageInput.value;
 
-    // Si le message n'est pas vide
     if (messageText) {
-        // Création d'un nouveau message
-        const newMessage = document.createElement('div');
-        newMessage.classList.add('message-sent'); // Classe pour les messages envoyés
 
-        // Ajout du texte et de la date
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('message-sent');
+
         newMessage.innerHTML = `
             <p class="message-text">${messageText}</p>
             <p class="message-date">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
         `;
 
-        // Ajout du nouveau message au conteneur
         messagesContainer.appendChild(newMessage);
 
-        // Effacement de l'input
         messageInput.value = '';
-
-        // Scroll automatique vers le bas
-        scrollToBottom();
     }
 });
 
-// Scroll vers le bas au chargement initial
-scrollToBottom();
+
 
 
 
