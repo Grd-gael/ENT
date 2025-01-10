@@ -1,0 +1,119 @@
+/* Conteneur principal */
+.job-listing-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    width: 90%;
+}
+
+/* Filtres */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.filter {
+    font-family: "Barlow", sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.filter-btn {
+    background-color: var(--light-orange);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--orange);
+}
+
+/* Liste des offres */
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.job-card {
+    font-family: "Barlow", sans-serif;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.job-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.job-type {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
+
+.job-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.job-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.job-btn {
+    background-color: var(--blue);
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.job-btn:hover {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    background-color: var(--light-orange);
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover {
+    background-color: var(--orange);
+}

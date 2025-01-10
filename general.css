@@ -236,6 +236,10 @@ aside h2{
     text-decoration: none;
 }
 
+.logo:hover{
+    text-decoration: none;
+}
+
 .text-logo {
     color: white;
     font-size: 1rem;
@@ -243,6 +247,7 @@ aside h2{
     flex-direction: column;
     margin-left: 10px;
 }
+
 
 .logo img {
     width: 40px;
