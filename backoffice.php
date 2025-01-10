@@ -25,7 +25,7 @@ include 'connect.php';
 <body class="jost">
     <h1>Backoffice</h1>
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des utilisateurs</h2>
         </summary>
@@ -102,7 +102,7 @@ include 'connect.php';
         </details>
     </details>
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des classes</h2>
         </summary>
@@ -217,7 +217,7 @@ include 'connect.php';
     </details>
 
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des cours</h2>
         </summary>
@@ -365,7 +365,7 @@ include 'connect.php';
         </details>
     </details>
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des modules</h2>
         </summary>
