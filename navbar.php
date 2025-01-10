@@ -29,12 +29,12 @@
 
     <div class="nav-active">
         <ul>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Scolarité</a></li>
-            <li><a href="#">Informations</a></li>
-            <li><a href="#">Messagerie</a></li>
-            <li><a href="#">Espace de stockage</a></li>
-            <li><a href="#">Emploi</a></li>
+            <li><a href="services.php">Services</a></li>
+            <li><a href="scolarite.php">Scolarité</a></li>
+            <li><a href="informations.php">Informations</a></li>
+            <li><a href="messagerie.php">Messagerie</a></li>
+            <li><a href="stockage.php">Espace de stockage</a></li>
+            <li><a href="emploi.php">Emploi</a></li>
         </ul>
     </div>
 </nav>
