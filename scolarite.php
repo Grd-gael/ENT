@@ -5,6 +5,8 @@ if (!isset($_SESSION['etudiant'])) {
     header('Location: connexion.php');
     exit;
 }
+
+require 'connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,25 +36,35 @@ require 'navbar.php';
 
 <a href="https://elearning.univ-eiffel.fr/login/index.php" target="_blank" class="button elearning">Accéder à Elearning</a>
 
+<?php
+$sql = "SELECT module.module, devoir.note FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk WHERE devoir.etud_fk = :etud_fk ORDER BY devoir.date DESC LIMIT 3;";
+$stmt = $db->prepare($sql);
+$stmt->execute(['etud_fk' => $_SESSION['etudiant']['etud_id']]);
+$notes = $stmt->fetchAll();
+
+$sql = "SELECT module.module, cours.debut, cours.fin FROM cours JOIN module ON module.modu_id = cours.modu_fk JOIN relation_cours_classe ON relation_cours_classe.cour_fk = cours.cour_id JOIN classe ON classe.clas_id = relation_cours_classe.clas_fk WHERE cours.debut = :jour AND classe.clas_id = :classe_etudiant ORDER BY cours.debut ASC;";
+$stmt = $db->prepare($sql);
+$stmt->execute(['jour' => date('Y-m-d'), 'classe_etudiant' => $_SESSION['etudiant']['clas_fk']]);
+$cours = $stmt->fetchAll();
+
+$sql = "SELECT module.module, cours.debut, cours.fin FROM absence JOIN cours ON cours.cour_id = absence.cour_fk JOIN module ON module.modu_id = cours.modu_fk WHERE absence.etud_fk = :etud_fk ORDER BY cours.debut DESC LIMIT 2;";
+$stmt = $db->prepare($sql);
+$stmt->execute(['etud_fk' => $_SESSION['etudiant']['etud_id']]);
+$absences = $stmt->fetchAll();
+?>
+
 <div class="container-section-fullpage">
     <a href="notes.php">
         <div class="section-box-scolarite">
             <h2>Dernières notes</h2>
-            <div class="note">
-                <p>Mathématiques</p>
-                <hr>
-                <p>15/20</p>
-            </div>
-            <div class="note">
-                <p>Physique</p>
-                <hr>
-                <p>12/20</p>
-            </div>
-            <div class="note">
-                <p>Anglais</p>
-                <hr>
-                <p>17/20</p>
-            </div>
+
+            <?php foreach ($notes as $note){ ?>
+                <div class="note">
+                    <p><?= $note['module'] ?></p>
+                    <hr>
+                    <p><?= $note['note'] ?>/20</p>
+                </div>
+            <?php } ?>
             <button class="button">Voir mes notes</button>
         </div>
     </a>
@@ -60,22 +72,16 @@ require 'navbar.php';
         <div class="section-box-scolarite">
             <h2>Aujourd'hui</h2>
             <div class="edt">
-                <div class="edt-item">
-                    <p>Mathématiques</p>
-                    <p>8h-10h</p>
-                </div>
-                <div class="edt-item">
-                    <p>Physique</p>
-                    <p>10h-12h</p>
-                </div>
-                <div class="edt-item">
-                    <p>Anglais</p>
-                    <p>14h-16h</p>
-                </div>
-                <div class="edt-item">
-                    <p>EPS</p>
-                    <p>16h-18h</p>
-                </div>
+                <?php 
+                if (empty($cours)) {
+                    echo '<p>Pas de cours aujourd\'hui</p>';
+                } else {
+                foreach ($cours as $cours){ ?>
+                    <div class="edt-item">
+                        <p><?= $cours['module'] ?></p>
+                        <p><?= date('H\hi', strtotime($cours['debut'])) ?>-<?= date('H\hi', strtotime($cours['fin'])) ?></p>
+                    </div>
+                <?php }} ?>
             </div>
             <button class="button">Voir mon emploi du temps</button>
         </div>

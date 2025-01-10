@@ -38,7 +38,7 @@ if ($user) {
             header('Location: professeur.php');
             break;
         case 'etud':
-            $stmt = $db->prepare('SELECT etudiant.etud_id, classe.tp, classe.annee FROM etudiant JOIN classe ON classe.clas_id = etudiant.clas_fk WHERE user_fk = :id');
+            $stmt = $db->prepare('SELECT etudiant.etud_id, etudiant.clas_fk, classe.tp, classe.annee FROM etudiant JOIN classe ON classe.clas_id = etudiant.clas_fk WHERE user_fk = :id');
             $stmt->bindParam(':id', $user['user_id']);
             $stmt->execute();
             $etudiant = $stmt->fetch(PDO::FETCH_ASSOC);
