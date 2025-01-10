@@ -104,7 +104,7 @@ btnModifierFavoris.addEventListener('click', () => {
     popupFavoris.classList.remove('hidden');
     popupFavoris.style.display = "flex";
 });
-
+    
 // Fermer la popup
 btnFermerPopup.addEventListener('click', () => {
     popupFavoris.classList.add('hidden');
@@ -129,7 +129,7 @@ btnValiderFavoris.addEventListener('click', () => {
         favorisBox.className = 'favoris-box';
 
         const icon = document.createElement('i');
-        icon.className = `fa-solid ${page.icon} fa-3x`;
+        icon.className = `fa-solid ${page.icon} fa-2xl`;
 
         const title = document.createElement('h3');
         title.textContent = page.name;

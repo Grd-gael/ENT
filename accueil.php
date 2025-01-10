@@ -84,20 +84,20 @@ require 'navbar.php';
         <div class="aside-wrapper" id="favoris-list">
             <a href="notes.php">
                 <div class="favoris-box">
-                    <i class="fa-solid fa-list fa-3x"></i>
+                    <i class="fa-solid fa-list fa-2xl"></i>
                     <h3>Notes</h3>
                 </div>
             </a>
     
             <a href="mail.php">
                 <div class="favoris-box">
-                    <i class="fa-solid fa-envelope fa-3x"></i>
+                    <i class="fa-solid fa-envelope fa-2xl"></i>
                     <h3>Mail</h3>
                 </div>
             </a>
             <a href="edt.php">
                     <div class="favoris-box">
-                        <i class="fa-solid fa-calendar-days fa-3x"></i>
+                        <i class="fa-solid fa-calendar-days fa-2xl"></i>
                         <h3>Emploi du temps</h3>
                     </div>
             </a>
@@ -155,8 +155,9 @@ require 'navbar.php';
 
         </form>
         <div class="popup-buttons">
-            <button id="btn-valider-favoris" class="button">Valider</button>
             <button id="btn-fermer-popup" class="button">Fermer</button>
+            <button id="btn-valider-favoris" class="button">Valider</button>
+            
         </div>
     </div>
 </div>
