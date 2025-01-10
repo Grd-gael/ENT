@@ -14,11 +14,13 @@ include 'connect.php';
 </head>
 <body>
     <h1>Backoffice</h1>
+
     <h2>Gestion des utilisateurs</h2>
-    <details>
-    <summary>
-        <h3>Liste des utilisateurs</h3>
-    </summary>
+
+    <details id="users">
+        <summary>
+            <h3>Liste des utilisateurs</h3>
+        </summary>
 
         <?php
         if (isset($_GET['adduser'])){
@@ -89,7 +91,7 @@ include 'connect.php';
     </details>
 
     <h2>Gestion des classes</h2>
-    <details>
+    <details id="classes">
         <summary>
             <h3>Liste des classes</h3>
         </summary>
@@ -126,8 +128,14 @@ include 'connect.php';
             }
             echo '</ul></li>';
             echo '</ul>';
-            echo '<a href="backoffice.php">Fermer</a>';
+            echo '<a href="backoffice.php?action=classes">Fermer</a>';
             echo '</div>';
+        }
+
+        if (isset($_GET['affectclass'])){
+            if ($_GET['affectclass']){
+                echo '<p>Affectation réussie</p>';
+            }
         }
         ?>
 
@@ -155,7 +163,7 @@ include 'connect.php';
                 $query->execute();
                 $effectif = $query->fetch(PDO::FETCH_ASSOC);
                 echo '<td>'.$effectif['effectif'].'</td>';
-                echo '<td><a href="backoffice.php?classe='.$classe['clas_id'].'">Détails</a></td>';
+                echo '<td><a href="backoffice.php?classe='.$classe['clas_id'].'&action=classes">Détails</a></td>';
                 echo '</tr>';
             }
             ?>
@@ -166,14 +174,6 @@ include 'connect.php';
         <summary>
             <h3>Affecter une classe</h3>
         </summary>
-
-        <?php
-        if (isset($_GET['affect'])){
-            if ($_GET['affect']){
-                echo '<p>Affectation réussie</p>';
-            }
-        }
-        ?>
 
         <form action="affectclass.php" method="POST">
             <label for="classe">Classe</label>
@@ -205,7 +205,7 @@ include 'connect.php';
     </details> 
 
     <h2>Gestion des cours</h2>
-    <details>
+    <details id="courses">
         <summary>
             <h3>Liste des cours</h3>
         </summary>
@@ -230,7 +230,7 @@ include 'connect.php';
                 <th>Heure de fin</th>
                 <th>Professeur</th>
                 <th>Classe</th>
-                <th>Actions</th>
+                <th>Supprimer</th>
             </tr>
             <?php
 
@@ -259,8 +259,8 @@ include 'connect.php';
                 echo '<td>'.$heure_debut.'</td>';
                 echo '<td>'.$heure_fin.'</td>';
                 echo '<td>'.$cours['prenom'].' '.$cours['nom'].'</td>';
-                echo '<td>MMI'.$classe['annee'].' | '.$classe['tp'].'</td>';
-                echo '<td><a href="backoffice.php?action=editcourse&id='.$cours['cour_id'].'">Modifier</a> | <a href="deletecourse.php?id='.$cours['cour_id'].'">Supprimer</a></td>';
+                echo '<td>MMI'.$cours['annee'].' | '.$cours['tp'].'</td>';
+                echo '<td><a href="deletecourse.php?id='.$cours['cour_id'].'">Supprimer</a></td>';
                 echo '</tr>';
             }
             ?>
@@ -274,13 +274,22 @@ include 'connect.php';
 
         <form action="addcourse.php" method="POST">
             <label for="module">Module</label>
-            <select name="module" id="module">
+            <select name="module" id="cours_module">
+                <option value="0" selected>-- Sélectionner un module --</option>
                 <?php
                 $sql = 'SELECT * FROM module;';
                 $query = $db->query($sql);
                 $modules = $query->fetchAll(PDO::FETCH_ASSOC);
                 foreach($modules as $module){
-                    echo '<option value="'.$module['modu_id'].'">'.$module['module'].'</option>';
+                    $sql = 'SELECT * FROM relation_prof_module WHERE modu_fk = '.$module['modu_id'].';';
+                    $query = $db->query($sql);
+                    $profs = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $proflist = '';
+                    foreach($profs as $prof){
+                        $proflist .= $prof['prof_fk'].' ';
+                    }
+
+                    echo '<option data-prof="'.$proflist.'" value="'.$module['modu_id'].'">'.$module['module'].'</option>';
                 }
 
                 $date = date('Y-m-d');
@@ -293,18 +302,28 @@ include 'connect.php';
             <label for="heure_fin">Heure de fin</label>
             <input type="time" name="heure_fin" id="heure_fin">
             <label for="prof">Professeur</label>
-            <select name="prof" id="prof">
+            <select name="prof" id="cours_prof">
+                <option value="0" selected>-- Sélectionner un professeur --</option>
                 <?php
-                $sql = 'SELECT * FROM user WHERE role = "prof";';
+                $sql = 'SELECT user.nom, user.prenom, professeur.prof_id FROM user JOIN professeur ON professeur.user_fk = user.user_id;';
                 $query = $db->query($sql);
                 $profs = $query->fetchAll(PDO::FETCH_ASSOC);
                 foreach($profs as $prof){
-                    echo '<option value="'.$prof['user_id'].'">'.$prof['prenom'].' '.$prof['nom'].'</option>';
+                    $sql = 'SELECT * FROM relation_prof_classe WHERE prof_fk = '.$prof['prof_id'].';';
+                    $query = $db->query($sql);
+                    $classes = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $classlist = '';
+                    foreach($classes as $classe){
+                        $classlist .= $classe['clas_fk'].' ';
+                    }
+
+                    echo '<option data-classe="'.$classlist.'" value="'.$prof['prof_id'].'">'.$prof['prenom'].' '.$prof['nom'].'</option>';
                 }
                 ?>
             </select>
             <label for="classe">Classe</label>
-            <select name="classe" id="classe">
+            <select name="classe" id="cours_classe">
+                <option value="0" selected>-- Sélectionner une classe --</option>
                 <?php
                 $sql = 'SELECT * FROM classe;';
                 $query = $db->query($sql);
@@ -319,10 +338,22 @@ include 'connect.php';
     </details>
 
     <h2>Gestion des modules</h2>
-    <details>
+    <details id="modules">
         <summary>
             <h3>Liste des modules</h3>
         </summary>
+
+        <?php
+        if (isset($_GET['deletemodule'])){
+            echo '<p>Module supprimé avec succès</p>';
+        } elseif (isset($_GET['desaffectmodule'])){
+            echo '<p>Module désaffecté avec succès</p>';
+        } elseif (isset($_GET['affectmodule'])){
+            echo '<p>Module affecté avec succès</p>';
+        } elseif (isset($_GET['addmodule'])){
+            echo '<p>Module ajouté avec succès</p>';
+        }
+        ?>
 
         <table>
             <caption>Liste des modules</caption>
@@ -333,14 +364,22 @@ include 'connect.php';
                 <th>Actions</th>
             </tr>
             <?php
-            $sql = 'SELECT user.prenom, user.nom, module.modu_id, module.module, professeur.prof_id FROM relation_prof_module JOIN professeur ON professeur.prof_id = relation_prof_module.prof_fk JOIN user ON user.user_id = professeur.user_fk JOIN module ON module.modu_id = relation_prof_module.modu_fk;';
+            $sql = 'SELECT user.prenom, user.nom, module.modu_id, module.module, professeur.prof_id 
+                FROM module 
+                LEFT JOIN relation_prof_module ON module.modu_id = relation_prof_module.modu_fk 
+                LEFT JOIN professeur ON professeur.prof_id = relation_prof_module.prof_fk 
+                LEFT JOIN user ON user.user_id = professeur.user_fk;';
             $query = $db->query($sql);
             $modules = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach($modules as $module){
                 echo '<tr>';
                 echo '<td>'.$module['modu_id'].'</td>';
                 echo '<td>'.$module['module'].'</td>';
-                echo '<td>'.$module['prenom'].' '.$module['nom'].'</td>';
+                if ($module['prof_id']){
+                    echo '<td>'.$module['prenom'].' '.$module['nom'].'</td>';
+                } else {
+                    echo '<td>Non affecté</td>';
+                }
                 echo '<td><a href="deletemodule.php?id='.$module['modu_id'].'">Supprimer</a> | <a href="desaffectmodule.php?module='.$module['modu_id'].'&prof='.$module['prof_id'].'">Désaffecter</a></td>';
                 echo '</tr>';
             }
@@ -378,5 +417,20 @@ include 'connect.php';
             </select>
             <input type="submit" value="Affecter">
         </form>
+    </details>
+
+    <details>
+        <summary>
+            <h3>Ajouter un module</h3>
+        </summary>
+
+        <form action="addmodule.php" method="POST">
+            <label for="module">Module</label>
+            <input type="text" name="module" id="module">
+            <input type="submit" value="Ajouter">
+        </form>
+    </details>
+
+    <script src="back.js"></script>
 </body>
 </html>

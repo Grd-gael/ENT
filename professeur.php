@@ -12,14 +12,14 @@ include 'connect.php';
 <body>
     <h1>Interface professeur</h1>
 
-    <details>
+    <details open>
         <summary>
             <h2>Absences</h2>
         </summary>
         <h3>Déclarer une absence</h3>
         <form action="addabsence.php?id=<?=$_GET['id']?>" method="post">
-            <label for="eleve">Élève</label>
-            <select name="eleve" id="eleve">
+            <label for="etudiant">Élève</label>
+            <select name="etudiant" id="etudiant_absence">
                 <option value="0" selected>-- Sélectionner un élève --</option>
                 <?php
                 $sql = 'SELECT user.nom, user.prenom, etudiant.etud_id, etudiant.clas_fk FROM etudiant JOIN relation_prof_classe ON etudiant.clas_fk = relation_prof_classe.clas_fk JOIN user ON user.user_id = etudiant.user_fk WHERE relation_prof_classe.prof_fk = :prof_id;';
@@ -34,7 +34,7 @@ include 'connect.php';
                 ?>
             </select>
             <label for="cours">Cours</label>
-            <select name="cours" id="cours">
+            <select name="cours" id="cours_absence">
                 <option value="0" selected>-- Sélectionner un cours --</option>
                 <?php
                 $sql = 'SELECT cours.cour_id, cours.debut, cours.fin, module.module, relation_cours_classe.clas_fk FROM cours JOIN module ON module.modu_id = cours.modu_fk JOIN relation_cours_classe ON relation_cours_classe.cour_fk = cours.cour_id WHERE cours.prof_fk = :prof_id;';
@@ -83,7 +83,7 @@ include 'connect.php';
         </table>
     </details>
 
-    <details>
+    <details open>
         <summary>
             <h2>Devoirs</h2>
         </summary>
@@ -167,7 +167,7 @@ include 'connect.php';
         </table>
     </details>
 
-    <details>
+    <details open>
         <summary>
             <h2>Notes</h2>
         </summary>
@@ -321,68 +321,6 @@ include 'connect.php';
         }
         ?>
 
-    <script>
-        const eleve = document.getElementById('eleve');
-        const cours = document.getElementById('cours');
-
-        eleve.addEventListener('change', function() {
-            if (eleve.value === '0') {
-                for (let i = 0; i < cours.options.length; i++) {
-                    cours.options[i].style.display = 'block';
-                }
-            } else {
-            const classe = eleve.options[eleve.selectedIndex].getAttribute('data-classe');
-            for (let i = 0; i < cours.options.length; i++) {
-                if (cours.options[i].getAttribute('data-classe') !== classe && cours.options[i].value !== '0') {
-                    cours.options[i].style.display = 'none';
-                } else {
-                    cours.options[i].style.display = 'block';
-                }
-            }
-        }
-        });
-
-        cours.addEventListener('change', function() {
-            if (cours.value === '0') {
-                for (let i = 0; i < eleve.options.length; i++) {
-                    eleve.options[i].style.display = 'block';
-                }
-            } else {
-                const classe = cours.options[cours.selectedIndex].getAttribute('data-classe');
-            for (let i = 0; i < eleve.options.length; i++) {
-                if (eleve.options[i].getAttribute('data-classe') !== classe && eleve.options[i].value !== '0') {
-                    eleve.options[i].style.display = 'none';
-                } else {
-                    eleve.options[i].style.display = 'block';
-                }
-            }
-        }
-        });
-
-        const note_enonce = document.getElementById('note_enonce');
-        const notes = document.querySelectorAll('#note_etudiant');
-        if (note_enonce.value === '0') {
-            notes.forEach(note => {
-                note.style.display = 'none';
-            });
-        }
-
-        note_enonce.addEventListener('change', function() {
-            if (note_enonce.value === '0') {
-                notes.forEach(note => {
-                    note.style.display = 'none';
-                });
-            } else {
-                const note_classe = note_enonce.options[note_enonce.selectedIndex].getAttribute('data-classe');
-                notes.forEach(note => {
-                    if (note.getAttribute('data-classe') !== note_classe) {
-                        note.style.display = 'none';
-                    } else {
-                        note.style.display = 'table-row';
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="back.js"></script>
 </body>
 </html>

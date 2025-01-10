@@ -26,9 +26,9 @@ switch ($role){
         $sql = 'UPDATE etudiant SET clas_fk='.$classe.' WHERE user_fk='.$user.';';
         $query = $db->query($sql);
 
-        header('Location: backoffice.php?affectclass=true');
+        header('Location: backoffice.php?affectclass=true&action=classes');
         break;
     default:
-        header('Location: backoffice.php?affectclass=false');
+        header('Location: backoffice.php?affectclass=&action=classes');
         break;
 }

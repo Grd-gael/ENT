@@ -6,10 +6,7 @@ $date = $_POST['date'];
 $heure_debut = $_POST['heure_debut'];
 $heure_fin = $_POST['heure_fin'];
 $classe = $_POST['classe'];
-
-$sql = 'SELECT * FROM professeur WHERE user_fk ='.$_POST['prof'].';';
-$query = $db->query($sql);
-$prof = $query->fetch(PDO::FETCH_ASSOC)['prof_id'];
+$prof = $_POST['prof'];
 
 $debut = date('Y-m-d H:i:s', strtotime($date.' '.$heure_debut));
 $fin = date('Y-m-d H:i:s', strtotime($date.' '.$heure_fin));
@@ -29,5 +26,5 @@ $query->bindValue(':cours', $cours_id, PDO::PARAM_INT);
 $query->bindValue(':classe', $classe, PDO::PARAM_INT);
 $query->execute();
 
-header('Location: backoffice.php?addcourse=true');
+header('Location: backoffice.php?addcourse=true&action=courses');
 ?>

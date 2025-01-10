@@ -33,4 +33,4 @@ $query = $db->prepare($sql);
 $query->bindValue(':id', $db->lastInsertId(), PDO::PARAM_INT);
 $query->execute();
 
-header('Location: backoffice.php?adduser=true');
+header('Location: backoffice.php?adduser=true&action=users');

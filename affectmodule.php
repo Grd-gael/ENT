@@ -30,5 +30,5 @@ if ($result) {
     $stmt->execute();
 }
 
-header('Location: backoffice.php?addrelation=true');
+header('Location: backoffice.php?addrelation=true&action=modules');
 ?>
