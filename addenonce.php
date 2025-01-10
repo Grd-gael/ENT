@@ -2,15 +2,17 @@
 
 $module = $_POST['module'];
 $classe = $_POST['classe'];
+$coeff = $_POST['coeff'];
 $rendu = date('Y-m-d H:i:s',strtotime($_POST['date'].' '.$_POST['heure']));
 $intitule = $_POST['intitule'];
 $prof = $_GET['id'];
 
 include 'connect.php';
 
-$sql = 'INSERT INTO enonce (date_rendu, intitule, modu_fk) VALUES (:date, :intitule, :module);';
+$sql = 'INSERT INTO enonce (date_rendu, coeff, intitule, modu_fk) VALUES (:date, :coeff, :intitule, :module);';
 $stmt = $db->prepare($sql);
 $stmt->bindValue(':date', $rendu, PDO::PARAM_STR);
+$stmt->bindValue(':coeff', strval($coeff), PDO::PARAM_STR);
 $stmt->bindValue(':intitule', $intitule, PDO::PARAM_STR);
 $stmt->bindValue(':module', $module, PDO::PARAM_INT);
 $stmt->execute();

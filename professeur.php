@@ -120,6 +120,8 @@ include 'connect.php';
                 }
                 ?>
             </select>
+            <label for="coeff">Coefficient</label>
+            <input type="number" name="coeff" id="coeff" min="0.5" max="5" step="0.5">
             <label for="date">Date de rendu</label>
             <input type="date" name="date" id="date" min="<?=date('Y-m-d')?>">
             <label for="heure">Heure de rendu</label>
@@ -137,11 +139,11 @@ include 'connect.php';
         ?>
         <table>
             <tr>
+                <th>Intitulé</th>
                 <th>Module</th>
                 <th>Classe</th>
                 <th>Date de rendu</th>
                 <th>Coefficient</th>
-                <th>Intitulé</th>
             </tr>
             <?php
             $sql = 'SELECT module.module, classe.tp, classe.annee, enonce.date_rendu, enonce.intitule, enonce.coeff FROM enonce JOIN relation_prof_enonce ON enonce.enon_id = relation_prof_enonce.enon_fk JOIN relation_enonce_classe ON enonce.enon_id = relation_enonce_classe.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE relation_prof_enonce.prof_fk = :prof_id;';
@@ -154,11 +156,11 @@ include 'connect.php';
                 $date = date('d/m/Y', strtotime($enonce['date_rendu']));
                 $heure = date('H:i', strtotime($enonce['date_rendu']));
                 echo '<tr>';
+                echo '<td>'.$enonce['intitule'].'</td>';
                 echo '<td>'.$enonce['module'].'</td>';
                 echo '<td>'.$enonce['tp'].' MMI'.$enonce['annee'].'</td>';
                 echo '<td>'.$date.' à '.$heure.'</td>';
                 echo '<td>'.$enonce['coeff'].'</td>';
-                echo '<td>'.$enonce['intitule'].'</td>';
                 echo '</tr>';
             }
             ?>
@@ -174,14 +176,16 @@ include 'connect.php';
                 echo '<p>Notes ajoutées avec succès</p>';
             }
             if (isset($_GET['devoir'])) {
-                $sql = 'SELECT enonce.intitule, module.module, classe.tp, classe.annee, devoir.devo_id, MAX(devoir.date) as date, devoir.note, devoir.remarque FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON enonce.enon_id = relation_enonce_classe.enon_fk JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE devoir.prof_fk = :prof_id AND devoir.devo_id = :devoir_id GROUP BY enonce.enon_id;';
+                $sql = 'SELECT enonce.intitule, module.module, classe.tp, classe.annee, devoir.devo_id, MAX(devoir.date) as date, devoir.note, devoir.remarque FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON enonce.enon_id = relation_enonce_classe.enon_fk JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE devoir.prof_fk = :prof_id AND devoir.enon_fk = :devoir_id GROUP BY enonce.enon_id;';
                 $stmt = $db->prepare($sql);
                 $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
                 $stmt->bindValue(':devoir_id', $_GET['devoir'], PDO::PARAM_INT);
                 $stmt->execute();
                 $devoir = $stmt->fetch(PDO::FETCH_ASSOC);
+
                 $date = date('d/m/Y', strtotime($devoir['date']));
                 $heure = date('H:i', strtotime($devoir['date']));
+
                 echo '<div class="devoir popup">';
                 echo '<h3>Notes pour '.$devoir['module'].' - '.$devoir['intitule'].' le '.$date.' à '.$heure.'</h3>';
                 echo '<table>';
@@ -214,14 +218,22 @@ include 'connect.php';
                 <select name="enonce" id="note_enonce">
                     <option value="0" selected>-- Sélectionner un énoncé --</option>
                     <?php
-                    $sql = 'SELECT enonce.enon_id, enonce.intitule, module.module, relation_enonce_classe.clas_fk FROM enonce JOIN relation_prof_enonce ON enonce.enon_id = relation_prof_enonce.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON relation_enonce_classe.enon_fk = enonce.enon_id WHERE relation_prof_enonce.prof_fk = :prof_id;';
+                    $sql = 'SELECT enonce.enon_id, enonce.intitule, module.module, relation_enonce_classe.clas_fk, classe.tp, classe.annee FROM enonce JOIN relation_prof_enonce ON enonce.enon_id = relation_prof_enonce.enon_fk JOIN module ON module.modu_id = enonce.modu_fk JOIN relation_enonce_classe ON relation_enonce_classe.enon_fk = enonce.enon_id JOIN classe ON classe.clas_id = relation_enonce_classe.clas_fk WHERE relation_prof_enonce.prof_fk = :prof_id;';
             
                     $stmt = $db->prepare($sql);
                     $stmt->bindValue(':prof_id', $_GET['id'], PDO::PARAM_INT);
                     $stmt->execute();
                     $enonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($enonces as $enonce) {
-                        echo '<option data-classe="'.$enonce['clas_fk'].'" value="'.$enonce['enon_id'].'">'.$enonce['module'].' - '.$enonce['intitule'].'</option>';
+                        $check = 'SELECT * FROM devoir WHERE enon_fk = :enonce AND prof_fk = :prof;';
+                        $stmt = $db->prepare($check);
+                        $stmt->bindValue(':enonce', $enonce['enon_id'], PDO::PARAM_INT);
+                        $stmt->bindValue(':prof', $_GET['id'], PDO::PARAM_INT);
+                        $stmt->execute();
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        if (!$result) {
+                            echo '<option data-classe="'.$enonce['clas_fk'].'" value="'.$enonce['enon_id'].'">'.$enonce['module'].' - '.$enonce['intitule'].' - MMI'.$enonce['annee'].' '.$enonce['tp'].'</option>';
+                        }
                     }
                     ?>
                 </select>
@@ -241,7 +253,7 @@ include 'connect.php';
                     foreach ($etudiants as $etudiant) {
                         echo '<tr id="note_etudiant" data-classe="'.$etudiant['clas_fk'].'">';
                         echo '<td>'.$etudiant['prenom'].' '.$etudiant['nom'].'</td>';
-                        echo '<td><input type="number" name="note['.$etudiant['etud_id'].'][note]" min="0" max="20"></td>';
+                        echo '<td><input type="number" name="note['.$etudiant['etud_id'].'][note]" min="0" max="20" step="0.01"></td>';
                         echo '<td><textarea name="note['.$etudiant['etud_id'].'][remarque]"></textarea></td>';
                         echo '</tr>';
                     }
