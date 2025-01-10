@@ -1,20 +1,3 @@
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-}
-
-:root{
-    --purple : #B162CB;
-    --light-purple : #A44DBF;
-    --orange : #FDB975;
-    --light-orange: #FEDFC0;
-    --blue : #01B0DC;
-    --light-blue : #A7E2F4;
-    --fond : #14003F;
-
-}
-
 
 body{
     background-image: url(img/fond.jpg);
@@ -31,12 +14,7 @@ body{
 }
 
 .container-logo{
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    margin-bottom: 30px;
 }
 
 .logo-connexion{

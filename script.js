@@ -28,24 +28,23 @@ btnclose.addEventListener('click', () => {
     favoris.classList.add('closed');
     contentclose.style.display = 'block';
     contentopen.style.display = 'none';
-    container.classList.remove('container-section-margin');
-    container.classList.add('container-section-fullpage');
-    h1.style.width = '95%';
-    containerbutton.style.width = '95%';
+    container.style.margin = 'auto';
+    h1.style.width = '100%';
+    containerbutton.style.width = '100%';
 });
 
-if ('aside.closed') {
-    document.querySelector('.closed').addEventListener('click', () => {
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('closed') || event.target.classList.contains('fa-chevron-left') || event.target.classList.contains('fa-users')) {
         console.log('click');
         favoris.classList.remove('closed');
         contentclose.style.display = 'none';
         contentopen.style.display = 'block';
-        container.classList.add('container-section-margin');
-        container.classList.remove('container-section-fullpage');
+        container.style.margin = '0';
         h1.style.width = '70%';
         containerbutton.style.width = '70%';
-    });
-}
+    }
+});
+
 
 
 

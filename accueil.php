@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo-eiffel.png" type="image/x-icon">
     <link rel="stylesheet" href="accueil.css">
     <link rel="stylesheet" href="general.css">
     <script src="https://kit.fontawesome.com/9f78fb8c04.js" crossorigin="anonymous"></script>
@@ -18,7 +19,7 @@ require 'navbar.php';
 ?>
 
 
-<h1>Accueil</h1>
+<h1 class="h1-section-margin">Accueil</h1>
 
 <div class="container-section-margin" id="container">
     <a href="services.php">
@@ -39,19 +40,19 @@ require 'navbar.php';
             <h2>Informations</h2>
         </div>
     </a>
-    <a href="#">
+    <a href="messagerie.php">
         <div class="section-box">
             <i class="fa-solid fa-envelopes-bulk fa-5x"></i>
             <h2>Messagerie</h2>
         </div>
     </a>
-    <a href="#">
+    <a href="stockage.php">
         <div class="section-box">
             <i class="fa-solid fa-folder fa-5x"></i>
             <h2>Espace de stockage</h2>
         </div>
     </a>
-    <a href="#">
+    <a href="emploi.php">
         <div class="section-box">
             <i class="fa-solid fa-briefcase fa-5x"></i>
             <h2>Emploi</h2>
