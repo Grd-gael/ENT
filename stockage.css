@@ -112,10 +112,11 @@
 }
 
 .popup-content {
+    font-family: "Barlow", sans-serif;
     background: white;
     padding: 20px;
     border-radius: 8px;
-    width: 300px;
+    width: 400px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -125,6 +126,7 @@
 }
 
 .popup-content input {
+    font-family: "Barlow", sans-serif;
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -133,6 +135,7 @@
 }
 
 .popup-content button {
+    font-family: "Barlow", sans-serif;
     padding: 10px 20px;
     background: #007bff;
     color: white;
