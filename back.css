@@ -25,6 +25,16 @@ h1, h2, h3 {
     left: 50px;
 }
 
+td a{
+    color: white;
+    text-decoration: none;
+}
+
+td a:hover{
+    color: var(--orange);
+    text-decoration: underline;
+}
+
 /* Containers */
 details {
     margin: 20px auto;
@@ -118,9 +128,6 @@ th {
     font-weight: bold;
 }
 
-tr:hover {
-    background-color: var(--blue);
-}
 
 /* Lists */
 ul {
@@ -139,17 +146,6 @@ li {
 
 li:hover {
     background-color: var(--light-blue);
-}
-
-/* Links */
-a {
-    color: var(--light-blue);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: var(--blue);
 }
 
 /* Responsive Design */
