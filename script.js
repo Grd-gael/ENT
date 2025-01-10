@@ -20,7 +20,7 @@ const btnclose = document.querySelector('.close');
 const contentopen = document.querySelector('.content-open');
 const contentclose = document.querySelector('.content-close');
 const containerbutton = document.querySelector('.container-button');
-const h1 = document.querySelector('h1');
+const titre = document.querySelector('h1');
 const container = document.querySelector('#container');
 
 
@@ -29,9 +29,10 @@ btnclose.addEventListener('click', () => {
     contentclose.style.display = 'block';
     contentopen.style.display = 'none';
     container.style.margin = 'auto';
-    h1.style.width = '100%';
+    titre.style.width = '100%';
     containerbutton.style.width = '100%';
 });
+
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('closed') || event.target.classList.contains('fa-chevron-left') || event.target.classList.contains('fa-users') || event.target.classList.contains('fa-envelope')) {
@@ -40,7 +41,7 @@ document.addEventListener('click', (event) => {
         contentclose.style.display = 'none';
         contentopen.style.display = 'block';
         container.style.margin = '0';
-        h1.style.width = '70%';
+        titre.style.width = '70%';
         containerbutton.style.width = '70%';
     }
 });
@@ -73,42 +74,5 @@ sendMessageButton.addEventListener('click', () => {
         messagesContainer.appendChild(newMessage);
 
         messageInput.value = '';
-    }
-});
-
-
-
-// Stockage 
-
-const tabs = document.querySelectorAll('.tab');
-const tabContents = document.querySelectorAll('.tab-content');
-
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.target).classList.add('active');
-    });
-});
-
-// Gestion de la popup
-const popup = document.getElementById('file-popup');
-const addFileButton = document.querySelector('.add-file-button');
-const addFileConfirm = document.getElementById('add-file-confirm');
-
-addFileButton.addEventListener('click', () => {
-    popup.classList.add('active');
-});
-
-addFileConfirm.addEventListener('click', () => {
-    popup.classList.remove('active');
-    alert('Fichier ajouté !'); // Simule l'ajout
-});
-
-popup.addEventListener('click', (e) => {
-    if (e.target === popup) {
-        popup.classList.remove('active');
     }
 });

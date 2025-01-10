@@ -38,7 +38,7 @@ require 'navbar.php';
         </div>
         <div id="tab-shared" class="tab-content">
             <div class="files">
-                <div class="file">Fichier partagé 1</div>
+                <div class="file"><i class="fa-regular fa-file-video fa-3x"></i>Fichier partagé 1</div>
             </div>
         </div>
     
@@ -51,6 +51,7 @@ require 'navbar.php';
         <div class="popup-content">
             <h3>Ajouter un fichier</h3>
             <input type="text" placeholder="Nom du fichier">
+            <input type="file" name="" id="">
             <button id="add-file-confirm">Ajouter</button>
         </div>
     </div>
@@ -60,8 +61,7 @@ require 'navbar.php';
 require 'footer.php';
 ?>
 
-
-
 <script src='script.js' ></script>
+<script src='stockage.js'></script>
 </body>
 </html>
