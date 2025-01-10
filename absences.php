@@ -86,7 +86,7 @@ require 'navbar.php';
                 <input type="radio" name="justification" value="autre" id="autre">
                 <label for="autre">Autre</label>
             </div>
-            <textarea name="message" id="message" cols="10" rows="2" placeholder="Message"></textarea>
+            <textarea name="message" id="message" cols="10" rows="2" placeholder="Autre motif"></textarea>
 
 
                 <button type="submit">Envoyer</button>
