@@ -18,7 +18,7 @@
 require 'navbar.php';
 ?>
 
-<p class="fil-ariane">>><a href="accueil.php" class="lien-fil-ariane">Accueil</a>><span class="fin-fil-ariane">Messagerie</span></p>
+<p class="fil-ariane">>><a href="accueil.php" class="lien-fil-ariane">Accueil</a>><a href="messagerie.php" class="lien-fil-ariane">Messagerie</a>><span class="fin-fil-ariane">Tchat</span></p>
 
 
 
