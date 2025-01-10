@@ -26,7 +26,7 @@ include 'connect.php';
 <a href="connexion.php" class="deconnexion"><i class="fa-solid fa-right-from-bracket" style="color:red;"></i> Se déconnecter</a>
     <h1>Backoffice</h1>
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des utilisateurs</h2>
         </summary>
@@ -103,7 +103,7 @@ include 'connect.php';
         </details>
     </details>
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des classes</h2>
         </summary>
@@ -218,7 +218,7 @@ include 'connect.php';
     </details>
 
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des cours</h2>
         </summary>
@@ -366,7 +366,7 @@ include 'connect.php';
         </details>
     </details>
 
-    <details class="main">
+    <details class="main" open>
         <summary>
             <h2>Gestion des modules</h2>
         </summary>

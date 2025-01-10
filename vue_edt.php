@@ -38,13 +38,15 @@ $etudiant = $_SESSION['etudiant']['etud_id'];
             } else {
                 echo '<td class="heure">'.$h.'h'.($m == 0 ? '00' : $m).'</td>';
             }
-            for ($j = 1; $j < 6; $j++) {
-                $sql = "SELECT cours.debut, cours.fin, module.module, salle.num_salle FROM cours JOIN relation_cours_classe ON cours.cour_id = relation_cours_classe.cour_fk JOIN classe ON classe.clas_id = relation_cours_classe.clas_fk JOIN etudiant ON etudiant.clas_fk = classe.clas_id JOIN module ON module.modu_id = cours.modu_fk JOIN reserve_salle ON reserve_salle.cour_fk = cours.cour_id JOIN salle ON salle.num_salle = reserve_salle.sall_fk WHERE etudiant.etud_id = :etudiant AND debut = :debut;";
+            for ($j = 0; $j < 5; $j++) {
+                $sql = "SELECT cours.debut, cours.fin, module.module, salle.num_salle FROM cours JOIN relation_cours_classe ON cours.cour_id = relation_cours_classe.cour_fk JOIN classe ON classe.clas_id = relation_cours_classe.clas_fk JOIN etudiant ON etudiant.clas_fk = classe.clas_id JOIN module ON module.modu_id = cours.modu_fk JOIN reserve_salle ON reserve_salle.cour_fk = cours.cour_id JOIN salle ON salle.num_salle = reserve_salle.sall_fk WHERE etudiant.etud_id = :etudiant AND cours.debut = :debut;";
 
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam(':etudiant', $etudiant);
 
-                $debut = date('Y-m-d H:i:s', strtotime("monday this week $week_offset week +$j days +$h hours +$m minutes"));
+                $debut_date = date('Y-m-d', strtotime("monday this week $week_offset week +$j days"));
+                $debut_time = date('H:i', strtotime("$h:$m"));
+                $debut = $debut_date.' '.$debut_time;
                 $stmt->bindParam(':debut', $debut);
 
                 $stmt->execute();
