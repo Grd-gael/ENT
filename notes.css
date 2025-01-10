@@ -1,0 +1,172 @@
+
+.notes-panel {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+    height: 40vh;
+    margin-left: 5vw;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.notes-panel h3 {
+    font-family: "Barlow", sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.notes-panel .note-item {
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.notes-panel .note-item p {
+    font-size: 0.9rem;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.notes-panel .note-value {
+    font-family: "Barlow", sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: var(--blue);
+    color: black;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.notes-panel .note-value:hover {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.notes-panel .matieres-title {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.notes-panel .matieres {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Tableau des matières */
+.subjects-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 1;
+}
+
+.subject-card {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 15px;
+    width: 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.subject-card h4 {
+    font-family: "Barlow", sans-serif;
+    font-size: 1.1rem;
+    width: 70%;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+}
+
+.subject-card .score-list {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.subject-card .score {
+    font-family: "Barlow", sans-serif;
+    background-color: var(--blue);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.subject-card .score:hover {
+    background-color: var(--dark-blue);
+}
+
+/* Popup Style */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: black;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 300px;
+}
+
+.popup h4 {
+    font-family: "Barlow", sans-serif;
+    margin-top: 0;
+}
+
+.popup p {
+    font-family: "Barlow", sans-serif;
+    margin: 10px 0;
+}
+
+.popup button {
+    font-family: "Barlow", sans-serif;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.popup button:hover {
+    background: #0056b3;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay.active,
+.popup.active {
+    display: block;
+}

@@ -52,7 +52,7 @@ require 'navbar.php';
     <div class="close">
         <i class="fa-solid fa-xmark fa-3x" style="color:white;"></i>
     </div>
-    <a href="mail.php" class="button" style="background-color:white; margin-left:32%;">Nouveau message</a>
+    <a href="mail.php" class="button" style="background-color:white; margin-left:32%;">Nouveau&nbsp;message</a>
     <h2>Emails reçus</h2>
     <ul>
         <li><a href="voirmail.php"><i class="fa-solid fa-envelope-circle-check fa-xl"></i> <div class="flex-vertical"><span>Jean Dupont</span><span class="sujet-mail">Bilan de réunion</span></div></a></li>
