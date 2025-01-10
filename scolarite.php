@@ -23,7 +23,7 @@ require 'navbar.php';
 
 <h1>Scolarité</h1>
 
-<a href="https://elearning.univ-eiffel.fr/login/index.php" class="button elearning">Accéder à Elearning</a>
+<a href="https://elearning.univ-eiffel.fr/login/index.php" target="_blank" class="button elearning">Accéder à Elearning</a>
 
 <div class="container-section-fullpage">
     <a href="notes.php">

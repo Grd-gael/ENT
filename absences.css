@@ -152,6 +152,7 @@
 .popup textarea {
     font-family: "Barlow", sans-serif;
     margin: 10px 0;
+    resize: none;
 }
 
 .popup button {
