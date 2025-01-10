@@ -33,7 +33,8 @@ require 'navbar.php';
     <div class="content">
         <div class="messages">
             <div class="message-received">
-                <p class="message-text">Salut, tu as fait le devoir de PHP ?</p>
+                <p class="message-text">Salut, <br>
+                tu as fait le devoir de PHP ? <br> stp </p>
                 <p class="message-date">12:30</p>
             </div>
             <div class="message-sent">
@@ -72,7 +73,7 @@ require 'navbar.php';
 <aside class="reduced-aside">
 <div class="content-open">
     <div class="close">
-        <i class="fa-solid fa-xmark fa-3x"></i>
+        <i class="fa-solid fa-xmark fa-3x" style="color:white;"></i>
     </div>
     <h2>Annuaire de contact</h2>
     <input type="text" placeholder="Rechercher un contact" class="annuaire">

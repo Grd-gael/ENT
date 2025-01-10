@@ -31,7 +31,7 @@ input.annuaire{
     margin: 0;
 }
 
-h2{
+.names h2{
     align-self: flex-start;
     font-size: 1rem;
     font-family: "jost", sans-serif;
@@ -43,14 +43,22 @@ aside ul {
     font-family: "jost", sans-serif;
 }
 
-aside li{
+aside li a{
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     padding: 10px;
-    width: 60%;
+    width: 80%;
     border-bottom: 1px solid #f1f1f1;
+}
+
+.sujet-mail{
+    font-size: 1.3rem;
+    font-family: "jost", sans-serif;
+    color: white;
+    margin: 0;
 }
 
 .photo-annuaire{
@@ -128,4 +136,109 @@ aside li{
 
 .message-input button:hover{
     background-color: var(--orange);
+}
+
+
+/* Mail */
+
+.mail{
+    background-color: white;
+    width: 60%;
+    height: 60vh;
+    padding: 50px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.mail h1{
+    font-size: 2rem;
+    font-family: "jost", sans-serif;
+    color: black;
+    margin: 0;
+    padding-bottom: 20px;
+    align-self: center;
+    width: 60%;
+    border-bottom: solid 1px black;
+}
+.mail h2{
+    font-size: 1.3rem;
+    font-family: "jost", sans-serif;
+    color: black;
+}
+
+.mail a{
+    align-self: center;
+    margin: 20px;
+}
+
+.mail-editor-form {
+    background-color: white;
+    width: 70%;
+    height: 65vh;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-family: "Barlow", sans-serif;
+}
+
+input[type="text"], input[type="email"], input[type="submit"] {
+    width: 100%;
+    font-family: "Barlow", sans-serif;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+.editable-message{
+    height: 200px;
+}
+
+
+.toolbar {
+    background: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.toolbar button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background: #0056b3;
 }

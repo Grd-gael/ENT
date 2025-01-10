@@ -28,7 +28,7 @@ require 'navbar.php';
             <h2>Services</h2>
         </div>
     </a>
-    <a href="#">
+    <a href="scolarite.php">
         <div class="section-box">
             <i class="fa-solid fa-graduation-cap fa-5x"></i>
             <h2>Scolarité</h2>
@@ -84,7 +84,7 @@ require 'navbar.php';
 <aside>
 <div class="content-open">
     <div class="close">
-        <i class="fa-solid fa-xmark fa-3x"></i>
+        <i class="fa-solid fa-xmark fa-3x" style="color:white;"></i>
     </div>
     <h2>Favoris</h2>
         <div class="aside-wrapper">
@@ -109,7 +109,7 @@ require 'navbar.php';
             </a>
     
         </div>
-        <button class="button">Modifier</button>
+        <button class="button" style="margin-left:35%; width:30%; margin-top: 30px;">Modifier</button>
 </div>
 
 <div class="content-close">

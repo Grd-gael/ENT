@@ -40,14 +40,14 @@ require 'navbar.php';
 <aside>
 <div class="content-open">
     <div class="close">
-        <i class="fa-solid fa-xmark fa-3x"></i>
+        <i class="fa-solid fa-xmark fa-3x" style="color:white;"></i>
     </div>
     <h2>Annuaire de contact</h2>
     <input type="text" placeholder="Rechercher un contact" class="annuaire">
     <ul>
-        <li><a href="#">Professeurs</a></li>
-        <li><a href="#">Administration</a></li>
-        <li><a href="#">Etudiants</a></li>
+        <li><a href="#"><img src="" class="photo-annuaire" alt="">Jean Dupont</a></li>
+        <li><a href="#"><img src="" class="photo-annuaire" alt="">Alicia Manor</a></li>
+        <li><a href="#"><img src="" class="photo-annuaire" alt="">Justine Menier</a></li>
     </ul>
 </div>
 <div class="content-close">

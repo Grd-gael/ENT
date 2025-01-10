@@ -9,6 +9,7 @@
     --light-purple: #A44DBF;
     --orange: #FDB975;
     --light-orange: #FEDFC0;
+    --dark-blue: #00608F;
     --blue: #01B0DC;
     --light-blue: #A7E2F4;
     --fond: #14003F;
@@ -173,7 +174,7 @@ aside{
     right: 0;
     width: 30vw;
     height: 120dvh;
-    background-color: var(--blue);
+    background-color: var(--dark-blue);
 }
 
 aside.closed{
