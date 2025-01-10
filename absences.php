@@ -22,77 +22,9 @@ require 'navbar.php';
 
 <h1>Absences</h1>
 
-<div class="container-section-fullpage">
-
-        <div class="container-absences">
-            <div class="summary-panel">
-                <h3>Total d’heures non justifiées</h3>
-                <p>6 heures</p>
-                <h3>Total d’heures d’absence</h3>
-                <p>8 heures</p>
-                <h3>Retards</h3>
-                <p>3</p>
-            </div>
-
-            <div class="absence-list">
-
-                <div class="absence-card">
-                    <h4>Absence le 11/12/2024 de 15h à 17h</h4>
-                    <p>2h total</p>
-                    <p class="status justified">Justifiée</p>
-                    <i class="fa-solid fa-circle-check fa-xl status justified status-icon"></i>
-                    <button class="button justified">Justifiée</button>
-                </div>
-
-                <div class="absence-card">
-                    <h4>Absence le 10/12/2024 de 10h à 12h</h4>
-                    <p>2h total</p>
-                    <p class="status unjustified">Non justifiée</p>
-                    <i class="fa-solid fa-circle-xmark fa-xl status-icon status unjustified"></i>
-                    <button class="button unjustified" onclick="openPopup()">Justifier mon absence</button>
-                </div>
-
-                <div class="absence-card">
-                    <h4>Absence le 5/11/2024 de 8h à 10h</h4>
-                    <p>2h total</p>
-                    <p class="status unjustified">Non justifiée</p>
-                    <i class="fa-solid fa-circle-xmark fa-xl status-icon status unjustified"></i>
-                    <button class="button unjustified" onclick="openPopup()">Justifier mon absence</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
-        <div class="popup" onclick="event.stopPropagation()">
-            <button class="close-popup" onclick="closePopup(event)">×</button>
-            <h2>Ajouter un justificatif</h2>
-            <form>
-            <label for="file">Choisir un fichier</label>
-                <input type="file" name="file" accept=".pdf,.jpg,.png">
-            <div class="motif">
-                <input type="radio" name="justification" value="maladie" id="maladie">
-                <label for="maladie">Maladie</label>
-            </div>
-            <div class="motif">
-                <input type="radio" name="justification" value="famille" id="famille">
-                <label for="famille">Raison familiale</label>
-            </div>
-            <div class="motif">
-                <input type="radio" name="justification" value="rdv" id="rdv">
-                <label for="rdv">Rendez-vous professionnel</label>
-            </div>
-            <div class="motif">
-                <input type="radio" name="justification" value="autre" id="autre">
-                <label for="autre">Autre</label>
-            </div>
-            <textarea name="message" id="message" cols="10" rows="2" placeholder="Autre motif"></textarea>
-
-
-                <button type="submit">Envoyer</button>
-            </form>
-        </div>
-    </div>
+            <?php
+            require 'vue_absences.php';
+            ?>
 
 
 

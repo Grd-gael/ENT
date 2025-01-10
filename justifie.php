@@ -6,7 +6,7 @@ var_dump($_FILES);
 
 $absence_id = $_POST['absence'];
 $motif = $_POST['motif'];
-if ($motif == 'Autre') {
+if ($motif == 'autre') {
     $motif = $_POST['autre'];
 }
 
@@ -22,5 +22,5 @@ $filename = $absence_id.'-'.basename($_FILES['justificatif']['name']);
 $newFilepath = $target_dir . $filename;
 move_uploaded_file($filepath, $newFilepath);
 
-header('Location: vue_absences.php?id='.$_POST['etudiant'].'&justifie');
+header('Location: absences.php?id='.$_POST['etudiant'].'&justifie');
 ?>

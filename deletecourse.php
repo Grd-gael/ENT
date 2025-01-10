@@ -3,7 +3,17 @@ include 'connect.php';
 
 $cours_id = $_GET['id'];
 
+$sql = 'DELETE FROM reserve_salle WHERE cour_fk = :id;';
+$query = $db->prepare($sql);
+$query->bindValue(':id', $cours_id, PDO::PARAM_INT);
+$query->execute();
+
 $sql = 'DELETE FROM relation_cours_classe WHERE cour_fk = :id;';
+$query = $db->prepare($sql);
+$query->bindValue(':id', $cours_id, PDO::PARAM_INT);
+$query->execute();
+
+$sql = 'DELETE FROM absence WHERE cour_fk = :id;';
 $query = $db->prepare($sql);
 $query->bindValue(':id', $cours_id, PDO::PARAM_INT);
 $query->execute();
@@ -13,5 +23,5 @@ $query = $db->prepare($sql);
 $query->bindValue(':id', $cours_id, PDO::PARAM_INT);
 $query->execute();
 
-header('Location: backoffice.php?deletecourse=true');
+header('Location: backoffice.php?deletecourse=true&action=courses');
 ?>

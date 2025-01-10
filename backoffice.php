@@ -212,9 +212,15 @@ include 'connect.php';
 
         <?php
         if (isset($_GET['addcourse'])){
-            echo '<p>Cours ajouté avec succès</p>';
+            if (isset($_GET['error'])){
+                if ($_GET['error'] == 'room_reserved'){
+                echo '<p>La salle est déjà réservée pour ce créneau</p>';
+                }
+            } elseif ($_GET['addcourse']){
+                echo '<p>Cours ajouté avec succès</p>';
+            }
         }
-
+        
         if (isset($_GET['deletecourse'])){
             echo '<p>Cours supprimé avec succès</p>';
         }
@@ -229,19 +235,22 @@ include 'connect.php';
                 <th>Heure de début</th>
                 <th>Heure de fin</th>
                 <th>Professeur</th>
+                <th>Salle</th>
                 <th>Classe</th>
                 <th>Supprimer</th>
             </tr>
             <?php
 
             $sql = 'SELECT cours.cour_id, cours.debut, cours.fin,
-            classe.tp, classe.annee, module.module, user.prenom, user.nom 
+            classe.tp, classe.annee, module.module, user.prenom, user.nom, salle.num_salle
             FROM cours
             JOIN professeur ON professeur.prof_id = cours.prof_fk 
             JOIN user ON user.user_id = professeur.user_fk 
             JOIN relation_cours_classe ON relation_cours_classe.cour_fk = cours.cour_id 
             JOIN classe ON relation_cours_classe.clas_fk = classe.clas_id 
-            JOIN module ON module.modu_id = cours.modu_fk';
+            JOIN module ON module.modu_id = cours.modu_fk
+            JOIN reserve_salle ON reserve_salle.cour_fk = cours.cour_id
+            JOIN salle ON salle.num_salle = reserve_salle.sall_fk;';
 
             $query = $db->prepare($sql);
             $query->execute();
@@ -259,6 +268,7 @@ include 'connect.php';
                 echo '<td>'.$heure_debut.'</td>';
                 echo '<td>'.$heure_fin.'</td>';
                 echo '<td>'.$cours['prenom'].' '.$cours['nom'].'</td>';
+                echo '<td>Salle '.$cours['num_salle'].'</td>';
                 echo '<td>MMI'.$cours['annee'].' | '.$cours['tp'].'</td>';
                 echo '<td><a href="deletecourse.php?id='.$cours['cour_id'].'">Supprimer</a></td>';
                 echo '</tr>';
@@ -330,6 +340,18 @@ include 'connect.php';
                 $classes = $query->fetchAll(PDO::FETCH_ASSOC);
                 foreach($classes as $classe){
                     echo '<option value="'.$classe['clas_id'].'">MMI'.$classe['annee'].' | '.$classe['tp'].'</option>';
+                }
+                ?>
+            </select>
+            <label for="salle">Salle</label>
+            <select name="salle" id="salle">
+                <option value="0" selected>-- Sélectionner une salle --</option>
+                <?php
+                $sql = 'SELECT * FROM salle;';
+                $query = $db->query($sql);
+                $salles = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach($salles as $salle){
+                    echo '<option value="'.$salle['num_salle'].'">Salle '.$salle['num_salle'].'</option>';
                 }
                 ?>
             </select>
