@@ -23,6 +23,7 @@ include 'connect.php';
     <script src="https://kit.fontawesome.com/9f78fb8c04.js" crossorigin="anonymous"></script>
 </head>
 <body class="jost">
+<a href="connexion.php" class="deconnexion"><i class="fa-solid fa-right-from-bracket" style="color:red;"></i> Se déconnecter</a>
     <h1>Backoffice</h1>
 
     <details class="main" open>

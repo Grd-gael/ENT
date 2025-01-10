@@ -23,6 +23,8 @@ include 'connect.php';
     <script src="https://kit.fontawesome.com/9f78fb8c04.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<a href="connexion.php" class="deconnexion"><i class="fa-solid fa-right-from-bracket" style="color:red;"></i> Se déconnecter</a>
     <h1>Espace professeurs</h1>
 
     <details open>
