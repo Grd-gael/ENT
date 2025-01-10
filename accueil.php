@@ -74,18 +74,12 @@ require 'navbar.php';
 
     <div class="flex-vertical box-button">
         <p>Tu te poses des questions sur ton projet professionnel ?</p>
-        <a href="" class="button">Quiz d'orientation</a>
+        <a href="orientation.php" class="button">Quiz d'orientation</a>
     </div>
     
     <div class="flex-vertical box-button">
         <p>Besoin d'aide sur un projet ?</p>
-        <a href="" class="button">Forum communautaire</a>
-    </div>
-
-
-    <div class="flex-vertical box-button">
-        <p>Besoin d’astuces et d’infos sur ton statut d’étudiant ?</p>
-        <a href="" class="button">Droits étudiants</a>
+        <a href="forum.php" class="button">Forum communautaire</a>
     </div>
 </div>
 
@@ -96,7 +90,7 @@ require 'navbar.php';
         <i class="fa-solid fa-xmark fa-3x" style="color:white;"></i>
     </div>
     <h2>Favoris</h2>
-        <div class="aside-wrapper">
+        <div class="aside-wrapper" id="favoris-list">
             <a href="notes.php">
                 <div class="favoris-box">
                     <i class="fa-solid fa-list fa-3x"></i>
@@ -118,8 +112,7 @@ require 'navbar.php';
             </a>
     
         </div>
-        <button class="button" style="margin-left:35%; width:30%; margin-top: 30px;">Modifier</button>
-</div>
+        <button id="btn-modifier-favoris" class="button" style="margin-left:35%; width:30%; margin-top: 30px;">Modifier</button>
 
 <div class="content-close">
 <i class="fa-solid fa-chevron-left fa-3x"></i>
@@ -128,6 +121,54 @@ require 'navbar.php';
 </div>
 </aside>
 
+
+<!-- Popup pour modifier les favoris -->
+<div id="popup-favoris" class="popup hidden">
+    <div class="popup-content">
+        <h3>Modifier vos favoris</h3>
+        <form id="favoris-form">
+            <label>
+                <input type="checkbox" value="commande.php"
+                />
+                Commande
+            </label>
+            <label>
+                <input type="checkbox" value="reservation.php" checked />
+                Réservation
+            </label>
+            <label>
+                <input type="checkbox" value="rdv.php"/>
+                Rendez-vous
+            </label>
+            <label>
+                <input type="checkbox" value="notes.php" checked />
+                Notes
+            </label>
+
+            <label>
+                <input type="checkbox" value="edt.php" checked />
+                Emploi du temps
+            </label>
+            <label>
+                <input type="checkbox" value="absences.php" />
+                Absences
+            </label>
+            <label>
+                <input type="checkbox" value="mail.php" checked />
+                Mail
+            </label>
+            <label>
+                <input type="checkbox" value="tchat.php" />
+                Tchat
+            </label>
+
+        </form>
+        <div class="popup-buttons">
+            <button id="btn-valider-favoris" class="button">Valider</button>
+            <button id="btn-fermer-popup" class="button">Fermer</button>
+        </div>
+    </div>
+</div>
 
 
 

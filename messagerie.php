@@ -34,7 +34,7 @@ require 'navbar.php';
 <div class="container-section-margin container-messagerie" id="container">
     <a href="tchat.php">
         <div class="section-box">
-            <i class="fa-solid fa-message fa-5x"></i>
+            <i class="fa-solid fa-comments fa-5x"></i>
             <h2>Tchat</h2>
         </div>
     </a>
