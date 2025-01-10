@@ -15,9 +15,8 @@
             </div>
             <div class="contacts">
                 <p class="footer-title">Contact :</p>
-                <p>Adresse</p>
-                <p>Numéro de téléphone</p>
-                <p>adresse@mail.com</p>
+                <p>5 boulevard Descartes <br> Champs-sur-Marne <br>77454 Marne-la-Vallée cedex 2</p>
+                <p>+33 (0)1 60 95 75 00</p>
             </div>
         </div>
         <div class="footer-right">
