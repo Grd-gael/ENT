@@ -47,6 +47,106 @@ document.addEventListener('click', (event) => {
 });
 
 
+// Références
+const btnModifierFavoris = document.getElementById('btn-modifier-favoris');
+const popupFavoris = document.getElementById('popup-favoris');
+const btnFermerPopup = document.getElementById('btn-fermer-popup');
+const btnValiderFavoris = document.getElementById('btn-valider-favoris');
+const favorisList = document.getElementById('favoris-list');
+const favorisForm = document.getElementById('favoris-form');
+
+// Pages disponibles pour les favoris
+const pagesData = [
+        {
+          "name": "Commande",
+          "url": "commande.php",
+          "icon": "fa-utensils"
+        },
+        {
+          "name": "Reservation",
+          "url": "reservation.php",
+          "icon": "fa-calendar-check"
+        },
+        {
+          "name": "Rendez-vous",
+          "url": "rdv.php",
+          "icon": "fa-handshake"
+        },
+        {
+          "name": "Notes",
+          "url": "notes.php",
+          "icon": "fa-list"
+        },
+        {
+          "name": "Emploi du temps",
+          "url": "edt.php",
+          "icon": "fa-calendar-days"
+        },
+        {
+          "name": "Absences",
+          "url": "absences.php",
+          "icon": "fa-user-times"
+        },
+        {
+          "name": "Mail",
+          "url": "mail.php",
+          "icon": "fa-envelope"
+        },
+        {
+          "name": "Tchat",
+          "url": "tchat.php",
+          "icon": "fa-comments"
+        }
+];
+
+// Ouvrir la popup
+btnModifierFavoris.addEventListener('click', () => {
+    popupFavoris.classList.remove('hidden');
+    popupFavoris.style.display = "flex";
+});
+
+// Fermer la popup
+btnFermerPopup.addEventListener('click', () => {
+    popupFavoris.classList.add('hidden');
+    popupFavoris.style.display = "none";
+});
+
+// Valider les favoris sélectionnés
+btnValiderFavoris.addEventListener('click', () => {
+    // Vider la liste des favoris
+    favorisList.innerHTML = '';
+
+    // Récupérer les pages sélectionnées
+    const selectedFavoris = Array.from(favorisForm.querySelectorAll('input:checked')).map(input => input.value);
+
+    // Ajouter les favoris dans l'aside
+    selectedFavoris.forEach(favoris => {
+        const page = pagesData.find(page => page.url === favoris);
+        const link = document.createElement('a');
+        link.href = page.url;
+
+        const favorisBox = document.createElement('div');
+        favorisBox.className = 'favoris-box';
+
+        const icon = document.createElement('i');
+        icon.className = `fa-solid ${page.icon} fa-3x`;
+
+        const title = document.createElement('h3');
+        title.textContent = page.name;
+
+        favorisBox.appendChild(icon);
+        favorisBox.appendChild(title);
+        link.appendChild(favorisBox);
+        favorisList.appendChild(link);
+    });
+
+    // Fermer la popup
+    popupFavoris.classList.add('hidden');
+    popupFavoris.style.display = "none";
+});
+
+
+
 // Tchat
 
 
