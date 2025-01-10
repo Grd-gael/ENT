@@ -4,8 +4,8 @@ include 'connect.php';
 
 $prenom = $_POST['prenom'];
 $nom = $_POST['nom'];
-$login = $_POST['login'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$login = $_POST['prenom'].'.'.$_POST['nom'];
+$password = password_hash($_POST['prenom'].'.'.$_POST['nom'], PASSWORD_DEFAULT);
 $role = $_POST['role'];
 
 $sql = 'INSERT INTO user (prenom, nom, login, mdp, role) VALUES (:prenom, :nom, :login, :password, :role);';

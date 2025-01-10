@@ -27,3 +27,4 @@ $query->bindValue(':id', $user_id, PDO::PARAM_INT);
 $query->execute();
 
 header('Location: backoffice.php?deleteuser=true');
+?>

@@ -16,7 +16,7 @@
         <img src="img/logo-eiffel.png" alt="Logo ENT" class="logo-connexion">
         <h1>ENT <br> Gustave Eiffel</h1>
     </div>
-    <form class="block-connexion" action="connexion.php" method="post">
+    <form class="block-connexion" action="traiteconnexion.php" method="post">
         <h2>Connexion</h2>
         <form action="connexion.php" method="post">
             <label for="login">Identifiant</label>

@@ -12,7 +12,7 @@ $role = $result['role'];
 
 switch ($role){
     case 'prof':
-        $sql = 'SELECT * FROM prof WHERE user_fk='.$user.';';
+        $sql = 'SELECT * FROM professeur WHERE user_fk='.$user.';';
         $query = $db->query($sql);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         $prof = $result['prof_id'];
