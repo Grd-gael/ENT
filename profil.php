@@ -37,7 +37,7 @@ require 'navbar.php';
         </div>
         <div class="nom-profil">
             <h1><?=$_SESSION['user']['prenom'].' '.$_SESSION['user']['nom']?></h1>
-            <h2>MMI 2 dev</h2>
+            <h2><?= $_SESSION['etudiant']['tp'].' MMI'.$_SESSION['etudiant']['annee'] ?></h2>
         </div>
     </div>
 
@@ -52,7 +52,7 @@ require 'navbar.php';
     <p>Je suis un dev créatif !</p>
 </div>
 
-<a href="connexion.php" class="button"> <i class="fa-solid fa-arrow-right-from-bracket" style="color: #f1402f;"></i> Se déconnecter</a>
+<a href="deconnexion.php" class="button"> <i class="fa-solid fa-arrow-right-from-bracket" style="color: #D10000;"></i> Se déconnecter</a>
 
 
 

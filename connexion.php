@@ -70,7 +70,6 @@ if (isset($_SESSUION['user'])) {
                 <label for="remember">Se souvenir de moi</label>
             </div>
             <input type="submit" value="Connexion">
-            <a href="accueil.php">hhzaf</a>
     </form>
 
 </body>

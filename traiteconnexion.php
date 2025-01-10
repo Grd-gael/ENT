@@ -38,7 +38,7 @@ if ($user) {
             header('Location: professeur.php');
             break;
         case 'etud':
-            $stmt = $db->prepare('SELECT etudiant.etud_id, classe.tp, classe.annee JOIN classe ON classe.class_id = etudiant.clas_fk FROM etudiant WHERE user_fk = :id');
+            $stmt = $db->prepare('SELECT etudiant.etud_id, classe.tp, classe.annee FROM etudiant JOIN classe ON classe.clas_id = etudiant.clas_fk WHERE user_fk = :id');
             $stmt->bindParam(':id', $user['user_id']);
             $stmt->execute();
             $etudiant = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ if ($user) {
 }
     
 } else {
-    header('Location: index.php?error=login');
+    header('Location: connexion.php?error=login');
     echo 'Mauvais login';
 }
 ?>

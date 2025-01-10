@@ -69,13 +69,13 @@ h2 {
 }
 
 /* Bouton de déconnexion */
-a[href="connexion.php"] {
+a[href="deconnexion.php"] {
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
     font-size: 1rem;
-    color: #f1402f;
+    color: #D10000;
     margin: auto;
     align-self: auto;
     margin-top: 30px;

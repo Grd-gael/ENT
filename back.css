@@ -1,0 +1,40 @@
+details {
+    display: block;
+    background-color: white;
+    border: 1px solid var(--light-blue);
+    padding: 10px;
+    border-radius: 50px;
+    margin: 10px 0;
+}
+
+details[open] {
+    border-color: var(--blue);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    min-height:150px;
+    max-width: 800px;
+    padding: 30px;
+}
+
+summary > * {
+    display: inline;
+}
+
+th {
+    font-size: small;
+}
+
+td {
+    font-size: small;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
