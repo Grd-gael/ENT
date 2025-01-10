@@ -24,13 +24,12 @@ require 'navbar.php';
 
 <div class="container-section-fullpage">
     <div class="container-stockage">
-        <!-- Onglets -->
+
         <div class="tabs">
             <div class="tab active" data-target="tab-personal">Espace perso</div>
             <div class="tab" data-target="tab-shared">Espace partagé</div>
         </div>
     
-        <!-- Contenus des onglets -->
         <div id="tab-personal" class="tab-content active">
             <div class="files">
                 <div class="file"> <i class="fa-regular fa-file-pdf fa-3x"></i>Fichier 1</div>
@@ -43,11 +42,11 @@ require 'navbar.php';
             </div>
         </div>
     
-        <!-- Bouton pour ajouter un fichier -->
+
         <button class="add-file-button">+</button>
     </div>
     
-    <!-- Popup -->
+
     <div class="popup" id="file-popup">
         <div class="popup-content">
             <h3>Ajouter un fichier</h3>
