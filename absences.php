@@ -68,7 +68,27 @@ require 'navbar.php';
             <button class="close-popup" onclick="closePopup(event)">×</button>
             <h2>Ajouter un justificatif</h2>
             <form>
+            <label for="file">Choisir un fichier</label>
                 <input type="file" name="file" accept=".pdf,.jpg,.png">
+            <div class="motif">
+                <input type="radio" name="justification" value="maladie" id="maladie">
+                <label for="maladie">Maladie</label>
+            </div>
+            <div class="motif">
+                <input type="radio" name="justification" value="famille" id="famille">
+                <label for="famille">Raison familiale</label>
+            </div>
+            <div class="motif">
+                <input type="radio" name="justification" value="rdv" id="rdv">
+                <label for="rdv">Rendez-vous professionnel</label>
+            </div>
+            <div class="motif">
+                <input type="radio" name="justification" value="autre" id="autre">
+                <label for="autre">Autre</label>
+            </div>
+            <textarea name="message" id="message" cols="10" rows="2" placeholder="Message"></textarea>
+
+
                 <button type="submit">Envoyer</button>
             </form>
         </div>

@@ -99,7 +99,7 @@
 .subject-card .score {
     font-family: "Barlow", sans-serif;
     background-color: var(--blue);
-    color: white;
+    color: black;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 1rem;
@@ -110,6 +110,7 @@
 
 .subject-card .score:hover {
     background-color: var(--dark-blue);
+    color: white;
 }
 
 /* Popup Style */
