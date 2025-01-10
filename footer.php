@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="footer-right">
-            <a class="logo" href="#">
-                <img src="img/logo-eiffel.png" alt="Logo" width="50">
+            <a class="logo" href="accueil.php">
+                <img src="img/logo-eiffel.png" alt="Retour à l'accueil" width="50">
                 <div class="text-logo">
                     <span class="barlow">Espace Numérique de Travail</span> <br>
                     <span class="jost">Gustave Eiffel</span>

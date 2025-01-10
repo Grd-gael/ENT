@@ -1,0 +1,145 @@
+/* Conteneur principal */
+.commande-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 20px;
+}
+
+/* Panier */
+.panier {
+    height: fit-content;
+    align-self: center;
+    flex: 1;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    font-family: "Barlow", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.panier h2 {
+    font-size: 20px;
+}
+
+#panier-items {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#panier-items li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+#total {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn-payer {
+    background-color: var(--light-orange);
+    color: black;
+    border: solid 1px black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.btn-payer:hover {
+    background-color: var(--orange);
+}
+
+/* Liste des plats */
+.plats {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+
+
+.plat-btn {
+    background-color: var(--blue);
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    height: 150px;
+    width: 150px;
+}
+
+.plat-btn:hover {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.popup-content h3 {
+    margin-bottom: 20px;
+}
+
+#popup-options {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#popup-options li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.popup-close {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-close:hover {
+    background-color: #c0392b;
+}
+
+.hidden {
+    display: none;
+}
