@@ -43,7 +43,7 @@ if ($user) {
             $stmt->execute();
             $etudiant = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['etudiant'] = $etudiant;
-            header('Location: accueil.php');
+            header('Location: index.php');
             break;
     }
 }

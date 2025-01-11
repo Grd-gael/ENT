@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <a class="logo" href="accueil.php">
+    <a class="logo" href="index.php">
         <img src="img/logo-eiffel.png" alt="Retour à l'accueil" width="50">
         <div class="text-logo">
             <span class="barlow">Espace Numérique de Travail</span> <br>

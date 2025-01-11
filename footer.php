@@ -5,7 +5,7 @@
         <div class="footer-left">
             <div class="flex-vertical">
                 <p class="footer-title">Navigation :</p>
-                <a href="accueil.php">Accueil</a>
+                <a href="index.php">Accueil</a>
                 <a href="services.php">Services</a>
                 <a href="scolarite.php">Scolarité</a>
                 <a href="informations.php">Informations</a>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="footer-right">
-            <a class="logo" href="accueil.php">
+            <a class="logo" href="index.php">
                 <img src="img/logo-eiffel.png" alt="Retour à l'accueil" width="50">
                 <div class="text-logo">
                     <span class="barlow">Espace Numérique de Travail</span> <br>

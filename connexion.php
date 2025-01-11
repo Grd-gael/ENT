@@ -10,7 +10,7 @@ if (isset($_SESSUION['user'])) {
             header('Location: professeur.php');
             break;
         case 'etudiant':
-            header('Location: accueil.php');
+            header('Location: index.php');
             break;
         default:
             header('Location: connexion.php?error=login');

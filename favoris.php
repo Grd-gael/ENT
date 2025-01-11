@@ -18,6 +18,6 @@ foreach($pages as $page){
     ]);
 }
 
-header('Location: accueil.php');
+header('Location: index.php');
 exit;
 ?>

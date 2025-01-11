@@ -28,7 +28,7 @@ if (!isset($_SESSION['etudiant'])) {
 require 'navbar.php';
 ?>
 
-<p class="fil-ariane">>><a href="accueil.php" class="lien-fil-ariane">Accueil</a>><a href="services.php" class="lien-fil-ariane">Services</a>><span class="fin-fil-ariane">Réservation</span></p>
+<p class="fil-ariane">>><a href="index.php" class="lien-fil-ariane">Accueil</a>><a href="services.php" class="lien-fil-ariane">Services</a>><span class="fin-fil-ariane">Réservation</span></p>
 
 <div class="container">
         <h1>Réservation de Salle</h1>
