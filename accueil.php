@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'connect.php';
 
 if (!isset($_SESSION['etudiant'])) {
     header('Location: connexion.php');
@@ -70,20 +71,6 @@ require 'navbar.php';
 </div>
 
 
-<div class="container-button">
-
-    <div class="flex-vertical box-button">
-        <p>Tu te poses des questions sur ton projet professionnel ?</p>
-        <a href="orientation.php" class="button">Quiz d'orientation</a>
-    </div>
-    
-    <div class="flex-vertical box-button">
-        <p>Besoin d'aide sur un projet ?</p>
-        <a href="forum.php" class="button">Forum communautaire</a>
-    </div>
-</div>
-
-
 <aside>
 <div class="content-open">
     <div class="close">
@@ -91,25 +78,19 @@ require 'navbar.php';
     </div>
     <h2>Favoris</h2>
         <div class="aside-wrapper" id="favoris-list">
-            <a href="notes.php">
-                <div class="favoris-box">
-                    <i class="fa-solid fa-list fa-2xl"></i>
-                    <h3>Notes</h3>
-                </div>
-            </a>
-    
-            <a href="mail.php">
-                <div class="favoris-box">
-                    <i class="fa-solid fa-envelope fa-2xl"></i>
-                    <h3>Mail</h3>
-                </div>
-            </a>
-            <a href="edt.php">
-                    <div class="favoris-box">
-                        <i class="fa-solid fa-calendar-days fa-2xl"></i>
-                        <h3>Emploi du temps</h3>
-                    </div>
-            </a>
+            <?php
+            $sql = 'SELECT * FROM favoris WHERE etud_fk = :etudiant_id';
+            $query = $db->prepare($sql);
+            $query->bindValue(':etudiant_id', $_SESSION['etudiant']['etud_id'], PDO::PARAM_INT);
+            $query->execute();
+            $favoris = $query->fetchAll();
+
+            if ($favoris){
+            foreach ($favoris as $favori) {
+                echo '<a href="' . $favori['page'] . '">'.$favori['page'].'</a>';
+            }
+        }
+            ?>
     
         </div>
         <button id="btn-modifier-favoris" class="button" style="margin-left:35%; width:30%; margin-top: 30px;">Modifier</button>
@@ -126,48 +107,45 @@ require 'navbar.php';
 <div id="popup-favoris" class="popup hidden">
     <div class="popup-content">
         <h3>Modifier vos favoris</h3>
-        <form id="favoris-form">
+        <form id="favoris-form" action="favoris.php" method="post">
             <label>
-                <input type="checkbox" value="commande.php"
+                <input type="checkbox" name="favoris[]" value="commande.php"
                 />
                 Commande
             </label>
             <label>
-                <input type="checkbox" value="reservation.php" checked />
+                <input type="checkbox" name="favoris[]" value="reservation.php" checked />
                 Réservation
             </label>
             <label>
-                <input type="checkbox" value="rdv.php"/>
-                Rendez-vous
-            </label>
-            <label>
-                <input type="checkbox" value="notes.php" checked />
+                <input type="checkbox" name="favoris[]" value="notes.php" checked />
                 Notes
             </label>
 
             <label>
-                <input type="checkbox" value="edt.php" checked />
+                <input type="checkbox" name="favoris[]" value="edt.php" checked />
                 Emploi du temps
             </label>
             <label>
-                <input type="checkbox" value="absences.php" />
+                <input type="checkbox" name="favoris[]" value="absences.php" />
                 Absences
             </label>
             <label>
-                <input type="checkbox" value="mail.php" checked />
+                <input type="checkbox" name="favoris[]" value="mail.php" checked />
                 Mail
             </label>
             <label>
-                <input type="checkbox" value="tchat.php" />
+                <input type="checkbox" name="favoris[]" value="tchat.php" />
                 Tchat
             </label>
 
-        </form>
-        <div class="popup-buttons">
+            <div class="popup-buttons">
             <button id="btn-fermer-popup" class="button">Fermer</button>
-            <button id="btn-valider-favoris" class="button">Valider</button>
+            <input type=submit id="btn-valider-favoris" class="button" value="Valider" />
             
         </div>
+        </form>
+        
     </div>
 </div>
 

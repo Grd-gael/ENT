@@ -68,11 +68,6 @@ const pagesData = [
           "icon": "fa-calendar-check"
         },
         {
-          "name": "Rendez-vous",
-          "url": "rdv.php",
-          "icon": "fa-handshake"
-        },
-        {
           "name": "Notes",
           "url": "notes.php",
           "icon": "fa-list"
@@ -111,39 +106,28 @@ btnFermerPopup.addEventListener('click', () => {
     popupFavoris.style.display = "none";
 });
 
-// Valider les favoris sélectionnés
-btnValiderFavoris.addEventListener('click', () => {
-    // Vider la liste des favoris
-    favorisList.innerHTML = '';
+if (favorisList.innerHTML.includes('<a')) {
+  favorisList.querySelectorAll('a').forEach(link => {
+    const url = link.innerHTML;
+    const page = pagesData.find(page => page.url === url);
 
-    // Récupérer les pages sélectionnées
-    const selectedFavoris = Array.from(favorisForm.querySelectorAll('input:checked')).map(input => input.value);
+    if (page) {
+      const favorisBox = document.createElement('div');
+      favorisBox.className = 'favoris-box';  
 
-    // Ajouter les favoris dans l'aside
-    selectedFavoris.forEach(favoris => {
-        const page = pagesData.find(page => page.url === favoris);
-        const link = document.createElement('a');
-        link.href = page.url;
+      const icon = document.createElement('i');
+      icon.className = `fa-solid ${page.icon} fa-2xl`;
 
-        const favorisBox = document.createElement('div');
-        favorisBox.className = 'favoris-box';
+      const title = document.createElement('h3');
+      title.textContent = page.name;
 
-        const icon = document.createElement('i');
-        icon.className = `fa-solid ${page.icon} fa-2xl`;
-
-        const title = document.createElement('h3');
-        title.textContent = page.name;
-
-        favorisBox.appendChild(icon);
-        favorisBox.appendChild(title);
-        link.appendChild(favorisBox);
-        favorisList.appendChild(link);
-    });
-
-    // Fermer la popup
-    popupFavoris.classList.add('hidden');
-    popupFavoris.style.display = "none";
-});
+      favorisBox.appendChild(icon);
+      favorisBox.appendChild(title);
+      link.innerHTML = '';
+      link.appendChild(favorisBox);
+    }
+  });
+}
 
 
 

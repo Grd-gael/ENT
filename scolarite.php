@@ -89,19 +89,13 @@ $absences = $stmt->fetchAll();
     <a href="absences.php">
         <div class="section-box-scolarite">
             <h2>Dernières Absences</h2>
-            <div class="absence">
-                <i class="fa-solid fa-circle-exclamation fa-xl" style="color: #f1402f;"></i>
-                <p>Mathématiques</p>
-                <hr>
-                <p>2 absences</p>
-            </div>
-            <div class="absence">
-            <i class="fa-solid fa-circle-check fa-xl" style="color: #63E6BE;"></i>
-                <p>Physique</p>
-                <hr>
-                <p>1 absence</p>
-            </div>
-
+            <?php foreach ($absences as $absence){ ?>
+                <div class="absence">
+                    <p><?= $absence['module'] ?></p>
+                    <hr>
+                    <p><?= date('d/m/Y', strtotime($absence['debut'])) ?></p>
+                </div>
+            <?php } ?>
             <button class="button">Voir mes absences</button>
         </div>
     </a>

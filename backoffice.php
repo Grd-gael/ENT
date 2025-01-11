@@ -49,7 +49,7 @@ include 'connect.php';
                     <th>Nom</th>
                     <th>Login</th>
                     <th>Rôle</th>
-                    <th>Actions</th>
+                    <th>Supprimer</th>
                 </tr>
                 <?php
                 $sql = 'SELECT * FROM user;';
@@ -73,9 +73,9 @@ include 'connect.php';
                     echo '<td>'.$user['nom'].'</td>';
                     echo '<td>'.$user['login'].'</td>';
                     echo '<td>'.$role.'</td>';
-                    echo '<td><a href="edituser.php?id='.$user['user_id'].'">Modifier</a>';
+                    echo '<td>';
                     if ($user['user_id'] != 1){
-                        echo ' | <a href="deleteuser.php?id='.$user['user_id'].'&role='.$user['role'].'">Supprimer</a>';
+                        echo '<a href="deleteuser.php?id='.$user['user_id'].'&role='.$user['role'].'">Supprimer</a>';
                     }
                     echo '</td>';
                     echo '</tr>';
@@ -118,7 +118,7 @@ include 'connect.php';
                 $query->bindValue(':id', $_GET['classe'], PDO::PARAM_INT);
                 $query->execute();
                 $classe = $query->fetch(PDO::FETCH_ASSOC);
-                echo '<div class="classe popup">';
+                echo '<div class="classe">';
                 echo '<h4>Classe '.$classe['tp'].' - MMI'.$classe['annee'].'</h4>';
                 echo '<ul>';
                 $sql = 'SELECT user.prenom, user.nom FROM etudiant JOIN user ON user.user_id = etudiant.user_fk WHERE etudiant.clas_fk = :id;';

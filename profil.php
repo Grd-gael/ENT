@@ -43,7 +43,6 @@ require 'navbar.php';
 
     <div class="flex-vertical">
         <a href="modif-profil.php"> <i class="fa-solid fa-pen" style="color: #ffffff;"></i> Modifier le profil</a>
-        <a href="accessibilite.php"><i class="fa-solid fa-universal-access" style="color: #ffffff;"></i>  Paramètres d'accessibilité</a>
     </div>
 </div>
 

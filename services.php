@@ -46,13 +46,6 @@ require 'navbar.php';
             <p>Réservez du materiel pour réaliser vos projets !</p>
         </div>
     </a>
-    <a href="rdv.php">
-        <div class="section-box">
-            <i class="fa-solid fa-clock fa-4x"></i>
-            <h2>Prise de rendez-vous</h2>
-            <p>Prenez rendez-vous avec des professionnels qui répondent à vos besoins !</p>
-        </div>
-    </a>
 </div>
 
 <?php
