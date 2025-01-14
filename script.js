@@ -1,7 +1,6 @@
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-active');
 const navLinks = document.querySelectorAll('.nav-links a:not(.profile)');
-console.log(navLinks);
 
 burger.addEventListener('click', () => {
     if (nav.classList.contains('show')) {
@@ -36,7 +35,6 @@ btnclose.addEventListener('click', () => {
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('closed') || event.target.classList.contains('fa-chevron-left') || event.target.classList.contains('fa-users') || event.target.classList.contains('fa-envelope')) {
-        console.log('click');
         favoris.classList.remove('closed');
         contentclose.style.display = 'none';
         contentopen.style.display = 'block';
@@ -95,18 +93,22 @@ const pagesData = [
 ];
 
 // Ouvrir la popup
+if (btnModifierFavoris) {
 btnModifierFavoris.addEventListener('click', () => {
     popupFavoris.classList.remove('hidden');
     popupFavoris.style.display = "flex";
 });
+}
     
 // Fermer la popup
+if (btnFermerPopup) {
 btnFermerPopup.addEventListener('click', () => {
     popupFavoris.classList.add('hidden');
     popupFavoris.style.display = "none";
 });
+}
 
-if (favorisList.innerHTML.includes('<a')) {
+if ((favorisList)&&(favorisList.innerHTML.includes('<a'))) {
   favorisList.querySelectorAll('a').forEach(link => {
     const url = link.innerHTML;
     const page = pagesData.find(page => page.url === url);
@@ -132,7 +134,6 @@ if (favorisList.innerHTML.includes('<a')) {
 
 
 // Tchat
-
 
 // Sélection des éléments nécessaires
 const messagesContainer = document.querySelector('.messages');

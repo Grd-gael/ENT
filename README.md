@@ -1,4 +1,4 @@
-URL : 
+URL : http://ent.da-silva.butmmi.o2switch.site/
 
 1. Pour réinstaller un site et sa base de données sur un autre serveur, on commence par sauvegarder les fichiers du site et on télécharge l’ensemble des fichiers du répertoire contenant le site web.
 2. Ensuite, on sauvegarde la base de données en se connectant à l'outil de gestion phpMyAdmin. On exporte la base au format SQL.

@@ -30,41 +30,59 @@ $etudiant = $_SESSION['etudiant']['etud_id'];
     </thead>
     <tbody>
         <?php
+        $rowspan_tracker = array_fill(0, 5, 0);
+
         for ($h = 8; $h < 18; $h++) {
             for ($m = 0; $m < 60; $m += 15) {
-            echo '<tr>';
-            if ($h<10) {
-                echo '<td class="heure">0'.$h.'h'.($m == 0 ? '00' : $m).'</td>';
-            } else {
-                echo '<td class="heure">'.$h.'h'.($m == 0 ? '00' : $m).'</td>';
-            }
-            for ($j = 0; $j < 5; $j++) {
-                $sql = "SELECT cours.debut, cours.fin, module.module, salle.num_salle FROM cours JOIN relation_cours_classe ON cours.cour_id = relation_cours_classe.cour_fk JOIN classe ON classe.clas_id = relation_cours_classe.clas_fk JOIN etudiant ON etudiant.clas_fk = classe.clas_id JOIN module ON module.modu_id = cours.modu_fk JOIN reserve_salle ON reserve_salle.cour_fk = cours.cour_id JOIN salle ON salle.num_salle = reserve_salle.sall_fk WHERE etudiant.etud_id = :etudiant AND cours.debut = :debut;";
-
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam(':etudiant', $etudiant);
-
-                $debut_date = date('Y-m-d', strtotime("monday this week $week_offset week +$j days"));
-                $debut_time = date('H:i', strtotime("$h:$m"));
-                $debut = $debut_date.' '.$debut_time;
-                $stmt->bindParam(':debut', $debut);
-
-                $stmt->execute();
-                $cours = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                if ($cours){
-                    $cours['debut'] = date('H:i', strtotime($cours['debut']));
-                    $cours['fin'] = date('H:i', strtotime($cours['fin']));
-
-                    $duree = date_diff(date_create($cours['debut']), date_create($cours['fin']));
-                    $duree = $duree->h + ($duree->i / 60);
-                    $duree = $duree * 4;
-                    echo '<td data-time="'.$cours['debut'].' - '.$cours['fin'].'" class="cours" rowspan='.$duree.'><p>'.$cours['module'].'</p><p>Salle '.$cours['num_salle'].'</p></td>';
+                echo '<tr>';
+                if ($h<10) {
+                    echo '<td class="heure">0'.$h.'h'.($m == 0 ? '00' : $m).'</td>';
                 } else {
-                    echo '<td></td>';
+                    echo '<td class="heure">'.$h.'h'.($m == 0 ? '00' : $m).'</td>';
                 }
-            }
-            echo '</tr>';
+
+                for ($j = 0; $j < 5; $j++) {
+                    if ($rowspan_tracker[$j] > 0) {
+                        $rowspan_tracker[$j]--;
+                        continue;
+                    }
+
+                    $sql = "SELECT cours.debut, cours.fin, module.module, salle.num_salle FROM cours 
+                            JOIN relation_cours_classe ON cours.cour_id = relation_cours_classe.cour_fk 
+                            JOIN classe ON classe.clas_id = relation_cours_classe.clas_fk 
+                            JOIN etudiant ON etudiant.clas_fk = classe.clas_id 
+                            JOIN module ON module.modu_id = cours.modu_fk 
+                            JOIN reserve_salle ON reserve_salle.cour_fk = cours.cour_id 
+                            JOIN salle ON salle.num_salle = reserve_salle.sall_fk 
+                            WHERE etudiant.etud_id = :etudiant AND cours.debut = :debut;";
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':etudiant', $etudiant);
+
+                    $debut_date = date('Y-m-d', strtotime("monday this week $week_offset week +$j days"));
+                    $debut_time = date('H:i', strtotime("$h:$m"));
+                    $debut = $debut_date.' '.$debut_time;
+                    $stmt->bindParam(':debut', $debut);
+
+                    $stmt->execute();
+                    $cours = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($cours) {
+                        $cours['debut'] = date('H:i', strtotime($cours['debut']));
+                        $cours['fin'] = date('H:i', strtotime($cours['fin']));
+
+                        $duree = date_diff(date_create($cours['debut']), date_create($cours['fin']));
+                        $duree = $duree->h + ($duree->i / 60);
+                        $duree = $duree * 4;
+
+                        $rowspan_tracker[$j] = $duree - 1;
+                        
+                        echo '<td data-time="'.$cours['debut'].' - '.$cours['fin'].'" class="cours" rowspan='.$duree.'><p>'.$cours['module'].'</p><p>Salle '.$cours['num_salle'].'</p></td>';
+                    } else {
+                        echo '<td></td>';
+                    }
+                }
+                echo '</tr>';
             }
         }
         ?>

@@ -94,11 +94,10 @@ require 'navbar.php';
     
         </div>
         <button id="btn-modifier-favoris" class="button" style="margin-left:35%; width:30%; margin-top: 30px;">Modifier</button>
-
-<div class="content-close">
-<i class="fa-solid fa-chevron-left fa-3x"></i>
 </div>
 
+<div class="content-close">
+    <i class="fa-solid fa-chevron-left fa-3x"></i>
 </div>
 </aside>
 

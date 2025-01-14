@@ -64,7 +64,7 @@ if (isset($_SESSUION['user'])) {
             <input type="text" name="login" placeholder="ex : prenom.nom">
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" placeholder="Mot de passe">
-            <a href="mdpoublié.php">Mot de passe oublié ?</a>
+            <a href="#">Mot de passe oublié ?</a>
             <div class="souvenirdemoi">
                 <input type="checkbox" name="remember" id="remember">
                 <label for="remember">Se souvenir de moi</label>

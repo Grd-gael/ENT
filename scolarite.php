@@ -40,17 +40,17 @@ require 'navbar.php';
 $sql = "SELECT module.module, devoir.note FROM devoir JOIN enonce ON enonce.enon_id = devoir.enon_fk JOIN module ON module.modu_id = enonce.modu_fk WHERE devoir.etud_fk = :etud_fk ORDER BY devoir.date DESC LIMIT 3;";
 $stmt = $db->prepare($sql);
 $stmt->execute(['etud_fk' => $_SESSION['etudiant']['etud_id']]);
-$notes = $stmt->fetchAll();
+$notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "SELECT module.module, cours.debut, cours.fin FROM cours JOIN module ON module.modu_id = cours.modu_fk JOIN relation_cours_classe ON relation_cours_classe.cour_fk = cours.cour_id JOIN classe ON classe.clas_id = relation_cours_classe.clas_fk WHERE cours.debut = :jour AND classe.clas_id = :classe_etudiant ORDER BY cours.debut ASC;";
+$sql = "SELECT module.module, cours.debut, cours.fin FROM cours JOIN module ON module.modu_id = cours.modu_fk JOIN relation_cours_classe ON relation_cours_classe.cour_fk = cours.cour_id WHERE relation_cours_classe.clas_fk = :classe_etudiant ORDER BY cours.debut ASC;";
 $stmt = $db->prepare($sql);
-$stmt->execute(['jour' => date('Y-m-d'), 'classe_etudiant' => $_SESSION['etudiant']['clas_fk']]);
-$cours = $stmt->fetchAll();
+$stmt->execute(['classe_etudiant' => $_SESSION['etudiant']['clas_fk']]);
+$result_cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT module.module, cours.debut, cours.fin FROM absence JOIN cours ON cours.cour_id = absence.cour_fk JOIN module ON module.modu_id = cours.modu_fk WHERE absence.etud_fk = :etud_fk ORDER BY cours.debut DESC LIMIT 2;";
 $stmt = $db->prepare($sql);
 $stmt->execute(['etud_fk' => $_SESSION['etudiant']['etud_id']]);
-$absences = $stmt->fetchAll();
+$absences = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container-section-fullpage">
@@ -72,16 +72,17 @@ $absences = $stmt->fetchAll();
         <div class="section-box-scolarite">
             <h2>Aujourd'hui</h2>
             <div class="edt">
-                <?php 
-                if (empty($cours)) {
-                    echo '<p>Pas de cours aujourd\'hui</p>';
-                } else {
-                foreach ($cours as $cours){ ?>
+                <?php
+                foreach ($result_cours as $cours){ 
+                    if (date('Y-m-d', strtotime($cours['debut'])) == date('Y-m-d')) {
+                ?>
                     <div class="edt-item">
                         <p><?= $cours['module'] ?></p>
                         <p><?= date('H\hi', strtotime($cours['debut'])) ?>-<?= date('H\hi', strtotime($cours['fin'])) ?></p>
                     </div>
-                <?php }} ?>
+                <?php
+                }}
+                ?>
             </div>
             <button class="button">Voir mon emploi du temps</button>
         </div>
