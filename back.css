@@ -9,6 +9,12 @@ body {
 
 /* Headings */
 h1, h2, h3 {
+    color: black;
+    text-align: center;
+    margin: 10px;
+}
+
+.side-panel h2{
     color: white;
     text-align: center;
     margin: 10px;
@@ -36,10 +42,17 @@ td a:hover{
 }
 
 /* Containers */
+.container {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 details {
     margin: 20px auto;
     width: 90%;
-    max-width: 600px; /* Limite pour grands écrans */
+    max-width: 800px; /* Limite pour grands écrans */
     background-color: var(--blue);
     border-radius: 8px;
     overflow: hidden;
@@ -65,7 +78,17 @@ summary:hover {
 }
 
 details > * {
-    margin: 10px 0;
+    margin: 10px auto;
+}
+
+.side-panel {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px 0;
+    width : 200px;
+    float: right;
 }
 
 /* Forms */
@@ -111,7 +134,7 @@ input[type="submit"]:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 0;
     background-color: var(--dark-blue);
 }
 
@@ -140,12 +163,7 @@ li {
     padding: 10px;
     margin: 5px 0;
     border-radius: 8px;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-li:hover {
-    background-color: var(--light-blue);
+    color: black;
 }
 
 /* Responsive Design */

@@ -142,7 +142,7 @@ include 'connect.php';
                 }
                 echo '</ul></li>';
                 echo '</ul>';
-                echo '<a href="backoffice.php?action=classes">Fermer</a>';
+                echo '<a href="backoffice.php?action=classes" class="button">Fermer</a>';
                 echo '</div>';
             }
             if (isset($_GET['affectclass'])){
